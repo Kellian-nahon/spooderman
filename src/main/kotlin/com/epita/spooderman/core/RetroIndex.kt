@@ -12,7 +12,7 @@ class RetroIndex {
         }
     }
 
-    fun forWord(word: String) {
-        index.getOrDefault(word, arrayListOf())
+    fun forWord(word: String): List<Document> {
+        return index.getOrDefault(word, arrayListOf())
     }
 }
