@@ -34,7 +34,10 @@ class TokenizerTest {
 
         val tokenizer = Tokenizer(
             Splitter(delimiters),
-            listOf( LowercaseReducer(), StopWordReducer(stopWords), StemmingReducer(suffixes), SynonymsReducer(synonyms))
+            listOf(
+                LowercaseReducer(), StopWordReducer(stopWords),
+                StemmingReducer(suffixes), SynonymsReducer(synonyms)
+            )
         )
 
         val tokens = tokenizer.tokenize("The blue rabbit is fishing in a blue river.")
