@@ -14,7 +14,7 @@ class TransportLayerTest {
         )
         val document = transportLayer.getDocument()
 
-        assert(document.content.contains("Google"))
-        assert(!document.content.contains("<div>"))
+        assert(document.contains("Google"))
+        assert(!document.contains("<div>"))
     }
 }

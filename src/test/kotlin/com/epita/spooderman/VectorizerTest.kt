@@ -8,7 +8,7 @@ class VectorizerTest {
 
     @Test
     fun testVectorizer() {
-        val dict = Vectorizer().Vectorize(listOf("blue", "rabbit", "fish", "blue", "river"))
+        val dict = Vectorizer().vectorize(listOf("blue", "rabbit", "fish", "blue", "river"))
         assertEquals(hashMapOf(Pair("blue", Pair(0.4f, listOf(0,3))),
             Pair("rabbit", Pair(0.2f, listOf(1))),
             Pair("fish", Pair(0.2f, listOf(2))),
