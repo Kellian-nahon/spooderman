@@ -1,16 +1,15 @@
 package com.epita.spooderman.vectorisation
 
 import com.epita.spooderman.core.DocumentVector
+import com.epita.spooderman.utils.mutableMultiMapOf
 
 
 class Vectorizer {
     fun vectorize(words: List<String>): DocumentVector {
-        val positionMap = mutableMapOf<String, ArrayList<Int>>()
+        val positionMap = mutableMultiMapOf<String, Int>()
 
         words.forEachIndexed { index, word ->
-            if (!positionMap.containsKey(word))
-                positionMap[word] = arrayListOf()
-            positionMap[word]!!.add(index)
+            positionMap.addValue(word, index)
         }
 
         return mapOf(

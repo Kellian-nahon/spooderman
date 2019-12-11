@@ -1,14 +1,14 @@
 package com.epita.spooderman.core
 
+import com.epita.spooderman.utils.MutableMultiMap
+import com.epita.spooderman.utils.mutableMultiMapOf
+
 class RetroIndex {
-    private val index: MutableMap<String, ArrayList<Document>> = mutableMapOf()
+    private val index: MutableMultiMap<String, Document> = mutableMultiMapOf()
 
     fun addDocument(document: Document) {
         document.vector.keys.forEach { word ->
-            if (!index.containsKey(word)) {
-                index[word] = arrayListOf()
-            }
-            index[word]!!.add(document)
+            index.addValue(word, document);
         }
     }
 
