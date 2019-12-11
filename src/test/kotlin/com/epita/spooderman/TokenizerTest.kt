@@ -7,11 +7,6 @@ import kotlin.test.assertNotEquals
 
 class TokenizerTest {
 
-    @Test
-    fun testSynonymeList() {
-        val hashMap = Tokenizer().getSynonymHashMap()
-        assertNotEquals(null, hashMap)
-    }
 
     @Test
     fun testTokenisation() {
@@ -19,10 +14,7 @@ class TokenizerTest {
         assertEquals(listOf("blue", "rabbit", "fish", "blue", "river"), tokens)
     }
 
-    @Test
-    fun testStemming() {
-        val words = Tokenizer().applyStemming(listOf("fishing", "tests"))
-        assertEquals(listOf("fish", "test"), words)
-    }
+
+
 
 }
