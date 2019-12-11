@@ -1,30 +1,22 @@
 package com.epita.spooderman.vectorisation
 
+import com.epita.spooderman.core.DocumentVector
+
 
 class Vectorizer {
+    fun vectorize(words: List<String>): DocumentVector {
+        val positionMap = mutableMapOf<String, ArrayList<Int>>()
 
-    fun Vectorize(words: List<String>): HashMap<String, Pair<Float, List<Int>>> {
-        var dict = HashMap<String, Pair<Float, List<Int>>>()
-        words.forEach { word ->
-            if(!dict.containsKey(word)) {
-                dict[word] = getNbOccurencesAndPositionInList(words, word)
-            }
-
+        words.forEachIndexed { index, word ->
+            if (!positionMap.containsKey(word))
+                positionMap[word] = arrayListOf()
+            positionMap[word]!!.add(index)
         }
-        return dict
+
+        return mapOf(
+            *positionMap.map { (word, positions) ->
+                Pair(word, Pair(positions.count().toFloat() / words.count(), positions.toList()))
+            }.toTypedArray()
+        )
     }
-
-    private fun getNbOccurencesAndPositionInList(words: List<String>, word:String): Pair<Float, List<Int>> {
-
-        var nbOccurrences = 0
-        var positions = ArrayList<Int>()
-        for (i in 0 until words.count()) {
-            if (words[i] == word) {
-                nbOccurrences += 1
-                positions.add(i)
-            }
-        }
-        return Pair(nbOccurrences.div(words.count().toFloat()), positions)
-    }
-
 }
