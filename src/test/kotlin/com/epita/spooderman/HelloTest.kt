@@ -1,8 +1,0 @@
-package com.epita.spooderman
-
-import org.junit.Test
-import kotlin.test.assertEquals
-
-class HelloTest {
-
-}
