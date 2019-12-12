@@ -1,6 +1,6 @@
 package com.epita.victaure
 
-import com.epita.spooderman.urils.utils.mutableMultiMapOf
+import com.epita.spooderman.utils.mutableMultiMapOf
 import org.junit.Test
 
 class MapExtensionTest {
