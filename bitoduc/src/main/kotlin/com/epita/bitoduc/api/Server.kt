@@ -3,18 +3,9 @@ package com.epita.bitoduc.api
 import com.epita.bitoduc.broker.Broker
 import com.epita.bitoduc.api.dto.DisconnectRequest
 import com.epita.bitoduc.api.dto.PublishRequest
-import com.epita.bitoduc.broker.ClientId
-import com.epita.bitoduc.broker.TopicId
-import com.epita.bitoduc.core.PublicationType
+import com.epita.bitoduc.api.dto.SubscribeRequest
 import com.epita.bitoduc.utils.jsonHandler
 import io.javalin.Javalin
-
-data class SubscribeMessage(val clientId: ClientId, val topicId: TopicId)
-
-data class SubscribeResponse(val topicId: TopicId)
-
-data class PublishMessage(val clientId: ClientId, val topicId: TopicId,
-                          val type: PublicationType, val content: String)
 
 class Server(private val broker: Broker) {
 
@@ -26,7 +17,7 @@ class Server(private val broker: Broker) {
         setup()
     }
 
-    private fun subscribe(message: SubscribeMessage) {
+    private fun subscribe(message: SubscribeRequest) {
     }
 
     private fun publish(message: PublishRequest) {
@@ -38,7 +29,7 @@ class Server(private val broker: Broker) {
     }
 
     private fun setup() {
-        app.post("/subscribe", jsonHandler(SubscribeMessage::class.java) { msg -> subscribe(msg)})
+        app.post("/subscribe", jsonHandler(SubscribeRequest::class.java) { msg -> subscribe(msg)})
         app.post("/publish", jsonHandler(PublishRequest::class.java) { msg -> publish(msg)})
         app.post("/disconnect", jsonHandler(DisconnectRequest::class.java) { msg -> disconnect(msg)})
     }
