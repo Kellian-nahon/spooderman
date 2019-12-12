@@ -1,4 +1,4 @@
-package com.epita.spooderman.cleaners
+package com.epita.victaure.cleaners
 
 import org.jsoup.Jsoup
 

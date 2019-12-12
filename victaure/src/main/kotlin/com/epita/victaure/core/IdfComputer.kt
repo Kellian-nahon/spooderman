@@ -1,4 +1,4 @@
-package com.epita.spooderman.core
+package com.epita.victaure.core
 
 import kotlin.math.ln
 

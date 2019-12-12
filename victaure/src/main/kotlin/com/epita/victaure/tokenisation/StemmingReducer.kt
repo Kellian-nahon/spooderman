@@ -1,4 +1,4 @@
-package com.epita.spooderman.tokenisation
+package com.epita.victaure.tokenisation
 
 class StemmingReducer(private val suffixes: Sequence<String>): WordTransformer {
     override fun apply(word: String): String? {

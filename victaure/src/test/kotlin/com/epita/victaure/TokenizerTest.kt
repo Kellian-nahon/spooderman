@@ -1,6 +1,6 @@
-package com.epita.spooderman
+package com.epita.victaure
 
-import com.epita.spooderman.tokenisation.*
+import com.epita.victaure.tokenisation.*
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.junit.Test

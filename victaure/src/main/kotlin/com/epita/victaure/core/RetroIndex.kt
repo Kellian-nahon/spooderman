@@ -1,7 +1,7 @@
-package com.epita.spooderman.core
+package com.epita.victaure.core
 
-import com.epita.spooderman.utils.MutableMultiMap
-import com.epita.spooderman.utils.mutableMultiMapOf
+import com.epita.spooderman.urils.utils.MutableMultiMap
+import com.epita.spooderman.urils.utils.mutableMultiMapOf
 
 class RetroIndex {
     private val index: MutableMultiMap<String, Document> = mutableMultiMapOf()

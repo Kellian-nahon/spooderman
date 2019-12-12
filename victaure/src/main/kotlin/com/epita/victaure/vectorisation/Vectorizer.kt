@@ -1,7 +1,7 @@
-package com.epita.spooderman.vectorisation
+package com.epita.victaure.vectorisation
 
-import com.epita.spooderman.core.DocumentVector
-import com.epita.spooderman.utils.mutableMultiMapOf
+import com.epita.victaure.core.DocumentVector
+import com.epita.spooderman.urils.utils.mutableMultiMapOf
 
 
 class Vectorizer {

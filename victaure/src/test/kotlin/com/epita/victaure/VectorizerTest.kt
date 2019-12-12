@@ -1,6 +1,6 @@
-package com.epita.spooderman
+package com.epita.victaure
 
-import com.epita.spooderman.vectorisation.Vectorizer
+import com.epita.victaure.vectorisation.Vectorizer
 import org.junit.Test
 import kotlin.test.assertEquals
 

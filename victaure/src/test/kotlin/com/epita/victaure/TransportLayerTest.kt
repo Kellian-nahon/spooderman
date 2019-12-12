@@ -1,7 +1,7 @@
-package com.epita.spooderman
+package com.epita.victaure
 
-import com.epita.spooderman.cleaners.DOMCleaner
-import com.epita.spooderman.core.TransportLayer
+import com.epita.victaure.cleaners.DOMCleaner
+import com.epita.victaure.core.TransportLayer
 import org.junit.Test
 import java.net.URL
 

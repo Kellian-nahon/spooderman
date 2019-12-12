@@ -1,4 +1,4 @@
-package com.epita.spooderman.tokenisation
+package com.epita.victaure.tokenisation
 
 import java.util.function.Function
 

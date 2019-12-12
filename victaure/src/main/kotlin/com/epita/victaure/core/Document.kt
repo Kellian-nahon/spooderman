@@ -1,4 +1,4 @@
-package com.epita.spooderman.core
+package com.epita.victaure.core
 
 typealias DocumentContent = String
 typealias DocumentVector = Map<String, Pair<Float, List<Int>>>

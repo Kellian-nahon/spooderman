@@ -1,6 +1,4 @@
-package com.epita.spooderman.tokenisation
-
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+package com.epita.victaure.tokenisation
 
 class Tokenizer(private val splitter: Splitter, private val transformers: List<WordTransformer>) {
     fun tokenize(text: String): List<String> {
