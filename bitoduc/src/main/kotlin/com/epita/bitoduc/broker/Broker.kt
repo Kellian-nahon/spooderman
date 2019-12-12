@@ -4,11 +4,11 @@ import com.epita.bitoduc.core.PublicationType
 import com.epita.spooderman.utils.MutableMultiMap
 import java.net.URL
 
-typealias ClientID = String
-typealias TopicID = String
+typealias ClientId = String
+typealias TopicId = String
 typealias Message = String
 
-fun TopicID.containsTopic(other: TopicID): Boolean {
+fun TopicId.containsTopic(other: TopicId): Boolean {
     val split = this.split("/")
     val otherSplit = other.split("/")
 
@@ -21,21 +21,21 @@ fun TopicID.containsTopic(other: TopicID): Boolean {
 }
 
 interface Server {
-    fun getTopics(): MutableMultiMap<TopicID, BrokerClient>
-    fun sendMessageToURL(url: URL, topicID: TopicID, message: Message)
+    fun getTopics(): MutableMultiMap<TopicId, BrokerClient>
+    fun sendMessageToURL(url: URL, topicID: TopicId, message: Message)
 
-    fun subscribe(clientID: ClientID, topicID: TopicID, webhook: URL) {
+    fun subscribe(clientId: ClientId, topicId: TopicId, webhook: URL) {
         val topics = getTopics()
-        val topic = topics[topicID]
+        val topic = topics[topicId]
         if (topic == null) {
-            topics[topicID] = mutableListOf(BrokerClient(clientID, webhook))
+            topics[topicId] = mutableListOf(BrokerClient(clientID, webhook))
         }
         else {
-            topic.add(BrokerClient(clientID, webhook))
+            topic.add(BrokerClient(clientId, webhook))
         }
     }
 
-    fun disconnect(clientID: ClientID) {
+    fun disconnect(clientId: ClientId) {
         getTopics().forEach { (_, clients) ->
             clients.removeIf { client ->
                 client.id == clientID
@@ -43,8 +43,8 @@ interface Server {
         }
     }
 
-    fun publish(topicID: TopicID, message: Message, type: PublicationType) {
-        val subscribedClients = getTopics()[topicID]
+    fun publish(topicId: TopicId, message: Message, type: PublicationType) {
+        val subscribedClients = getTopics()[topicId]
 
         if (subscribedClients == null) {
             return
@@ -52,10 +52,10 @@ interface Server {
 
         if (type == PublicationType.ONCE) {
             val client = subscribedClients.random()
-            sendMessageToURL(client.url, topicID, message)
+            sendMessageToURL(client.url, topicId, message)
         } else {
             subscribedClients.forEach { client ->
-                sendMessageToURL(client.url, topicID, message)
+                sendMessageToURL(client.url, topicId, message)
             }
         }
     }
