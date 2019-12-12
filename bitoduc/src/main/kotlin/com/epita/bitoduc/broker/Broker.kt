@@ -20,7 +20,7 @@ fun TopicId.containsTopic(other: TopicId): Boolean {
     return true
 }
 
-interface Server {
+interface Broker {
     fun getTopics(): MutableMultiMap<TopicId, BrokerClient>
     fun sendMessageToURL(url: URL, topicID: TopicId, message: Message)
 
