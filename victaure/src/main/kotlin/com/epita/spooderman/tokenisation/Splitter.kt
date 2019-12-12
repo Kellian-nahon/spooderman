@@ -7,4 +7,3 @@ class Splitter(private val delimiters: List<String>): Function<String, List<Stri
         return text.split(*delimiters.toTypedArray(), ignoreCase = true)
     }
 }
-
