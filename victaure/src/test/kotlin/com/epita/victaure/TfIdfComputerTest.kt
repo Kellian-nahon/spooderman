@@ -1,16 +1,13 @@
-package com.epita.spooderman
+package com.epita.victaure
 
 import com.epita.spooderman.core.Document
-import com.epita.spooderman.core.IdfComputer
+import com.epita.victaure.core.IdfComputer
 import com.epita.spooderman.core.RetroIndex
 import com.epita.spooderman.tokenisation.*
 import com.epita.spooderman.vectorisation.Vectorizer
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.junit.Test
-import java.util.*
-import javax.print.Doc
-import kotlin.test.assertEquals
 
 class TfIdfComputerTest {
     
