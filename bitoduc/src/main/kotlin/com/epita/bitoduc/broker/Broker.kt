@@ -28,7 +28,7 @@ interface Server {
         val topics = getTopics()
         val topic = topics[topicId]
         if (topic == null) {
-            topics[topicId] = mutableListOf(BrokerClient(clientID, webhook))
+            topics[topicId] = mutableListOf(BrokerClient(clientId, webhook))
         }
         else {
             topic.add(BrokerClient(clientId, webhook))
@@ -38,7 +38,7 @@ interface Server {
     fun disconnect(clientId: ClientId) {
         getTopics().forEach { (_, clients) ->
             clients.removeIf { client ->
-                client.id == clientID
+                client.id == clientId
             }
         }
     }
