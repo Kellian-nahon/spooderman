@@ -1,12 +1,13 @@
 package com.epita.bitoduc.api
 
 import com.epita.bitoduc.broker.Broker
+import com.epita.bitoduc.api.dto.DisconnectRequest
+import com.epita.bitoduc.api.dto.PublishRequest
 import com.epita.bitoduc.broker.ClientId
 import com.epita.bitoduc.broker.TopicId
 import com.epita.bitoduc.core.PublicationType
 import com.epita.bitoduc.utils.jsonHandler
 import io.javalin.Javalin
-import io.javalin.http.Context
 
 data class SubscribeMessage(val clientId: ClientId, val topicId: TopicId)
 
@@ -25,22 +26,21 @@ class Server(private val broker: Broker) {
         setup()
     }
 
-    private fun subscribe(message: SubscribeMessage): SubscribeResponse {
-        return SubscribeResponse(message.topicId)
+    private fun subscribe(message: SubscribeMessage) {
     }
 
-    private fun publish(message: PublishMessage) {
-        broker.publish(message.topicId, message.content, message.type)
+    private fun publish(message: PublishRequest) {
+        broker.publish(message.topicId, message.message, message.publishType)
     }
 
-    private fun disconnect(ctx: Context) {
+    private fun disconnect(message: DisconnectRequest) {
 
     }
 
     private fun setup() {
         app.post("/subscribe", jsonHandler(SubscribeMessage::class.java) { msg -> subscribe(msg)})
-        app.post("/publish", jsonHandler(PublishMessage::class.java) { msg -> publish(msg)})
-        app.post("/disconnect") { ctx -> disconnect(ctx)}
+        app.post("/publish", jsonHandler(PublishRequest::class.java) { msg -> publish(msg)})
+        app.post("/disconnect", jsonHandler(DisconnectRequest::class.java) { msg -> disconnect(msg)})
     }
 
     fun start() {
