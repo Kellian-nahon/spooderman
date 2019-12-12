@@ -10,7 +10,7 @@ data class SubscribeMessage(val clientId: ClientId, val topicId: TopicId)
 
 data class SubscribeResponse(val topicId: TopicId)
 
-object Server {
+class Server {
     private fun subscribe(message: SubscribeMessage): SubscribeResponse {
         return SubscribeResponse(message.topicId)
     }
@@ -24,8 +24,8 @@ object Server {
     }
 
     fun setup(app: Javalin) {
-        app.post("/subscribe", jsonHandler(SubscribeMessage::class.java, Server::subscribe))
-        app.post("/publish", Server::publish)
-        app.post("/disconnect", Server::disconnect)
+        app.post("/subscribe", jsonHandler(SubscribeMessage::class.java) { ctx -> subscribe(ctx)})
+        app.post("/publish") { ctx -> publish(ctx)}
+        app.post("/disconnect") { ctx -> disconnect(ctx)}
     }
 }
