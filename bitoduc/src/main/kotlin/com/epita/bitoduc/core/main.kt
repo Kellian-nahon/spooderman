@@ -5,9 +5,6 @@ import com.epita.bitoduc.broker.*
 import com.epita.reussaure.core.Reussaure
 import com.epita.reussaure.provider.Prototype
 import com.epita.reussaure.provider.Singleton
-import com.epita.spooderman.utils.MutableMultiMap
-import io.javalin.Javalin
-import java.net.URL
 import java.util.function.Supplier
 
 fun main(args: Array<String>) {

@@ -11,8 +11,13 @@ class DefaultBroker : Broker {
         return topics
     }
 
-    override fun sendMessageToURL(url: URL, topicID: TopicId, message: Message) {
-
+    override fun sendMessageToURL(url: URL, topicId: TopicId, message: Message) {
+        khttp.async.post(url.toString(), data=mapOf(
+            Pair("topicId", topicId),
+            Pair("message", "Message")
+        )) {
+            // TODO: Log response
+            println("URL: $url Status Code: $statusCode")
+        }
     }
-
 }

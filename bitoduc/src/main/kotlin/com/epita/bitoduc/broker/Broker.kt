@@ -22,7 +22,7 @@ fun TopicId.containsTopic(other: TopicId): Boolean {
 
 interface Broker {
     fun getTopics(): MutableMultiMap<TopicId, BrokerClient>
-    fun sendMessageToURL(url: URL, topicID: TopicId, message: Message)
+    fun sendMessageToURL(url: URL, topicId: TopicId, message: Message)
 
     fun subscribe(clientId: ClientId, topicId: TopicId, webhook: URL) {
         val topics = getTopics()
