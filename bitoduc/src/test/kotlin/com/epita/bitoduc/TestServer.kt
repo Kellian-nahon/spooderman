@@ -23,6 +23,6 @@ class TestServer {
 
     @Test
     fun clientHasTopic() {
-        BrokerClient("1", URL("https://google.com"), mutableSetOf("mti"))
+        val client = BrokerClient("1", URL("https://google.com"), mutableSetOf("mti"))
     }
 }
