@@ -21,6 +21,7 @@
 
   <modules>
     <module>victaure</module>
+    <module>reussaure</module>
   </modules>
 
   <dependencies>
