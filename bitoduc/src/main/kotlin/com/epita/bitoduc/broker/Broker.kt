@@ -1,6 +1,7 @@
 package com.epita.bitoduc.broker
 
 import com.epita.bitoduc.core.PublicationType
+import com.epita.spooderman.utils.MutableMultiMap
 import java.net.URL
 
 typealias ClientID = String
@@ -20,37 +21,40 @@ fun TopicID.containsTopic(other: TopicID): Boolean {
 }
 
 interface Server {
-    fun getClients(): MutableMap<ClientID, BrokerClient>
+    fun getTopics(): MutableMultiMap<TopicID, BrokerClient>
     fun sendMessageToURL(url: URL, topicID: TopicID, message: Message)
 
-    fun clientHasTopic(client: BrokerClient, topicID: TopicID): Boolean {
-        return client.topics.any(topicID::containsTopic)
-    }
-
     fun subscribe(clientID: ClientID, topicID: TopicID, webhook: URL) {
-        var client = getClients()[clientID]
-        if (client == null) {
-            client = BrokerClient(clientID, webhook, mutableSetOf(topicID))
-            getClients()[clientID] = client
-        } else {
-            client.topics.add(topicID)
+        val topics = getTopics()
+        val topic = topics[topicID]
+        if (topic == null) {
+            topics[topicID] = mutableListOf(BrokerClient(clientID, webhook))
+        }
+        else {
+            topic.add(BrokerClient(clientID, webhook))
         }
     }
 
     fun disconnect(clientID: ClientID) {
-        getClients().remove(clientID)
+        getTopics().forEach { (_, clients) ->
+            clients.removeIf { client ->
+                client.id == clientID
+            }
+        }
     }
 
     fun publish(topicID: TopicID, message: Message, type: PublicationType) {
-        val subscribedClients = getClients().filterValues {
-            clientHasTopic(it, topicID)
+        val subscribedClients = getTopics()[topicID]
+
+        if (subscribedClients == null) {
+            return
         }
 
         if (type == PublicationType.ONCE) {
-            val client = subscribedClients.values.random()
+            val client = subscribedClients.random()
             sendMessageToURL(client.url, topicID, message)
         } else {
-            subscribedClients.values.forEach {client ->
+            subscribedClients.forEach { client ->
                 sendMessageToURL(client.url, topicID, message)
             }
         }
