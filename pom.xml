@@ -22,6 +22,7 @@
   <modules>
     <module>victaure</module>
     <module>reussaure</module>
+    <module>bitoduc</module>
   </modules>
 
   <dependencies>
