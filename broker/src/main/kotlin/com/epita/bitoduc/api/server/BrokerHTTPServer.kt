@@ -8,7 +8,7 @@ import com.epita.bitoduc.api.dto.SubscribeRequest
 import com.epita.bitoduc.utils.jsonHandler
 import io.javalin.Javalin
 
-class BitoducAPIServer(private val broker: Broker, private val server: Javalin) {
+class BrokerHTTPServer(private val broker: Broker, private val server: Javalin) {
     init {
         setup()
     }

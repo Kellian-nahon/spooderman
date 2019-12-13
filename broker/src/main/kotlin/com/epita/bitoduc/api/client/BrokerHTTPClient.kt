@@ -11,7 +11,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.json.JSONObject
 import java.net.URL
 
-class BitoducAPIClient(private val brokerURL: URL) {
+class BrokerHTTPClient(private val brokerURL: URL) {
     private fun <PAYLOAD_TYPE> sendRequest(
         route: String,
         payload: PAYLOAD_TYPE,

@@ -11,8 +11,8 @@ import java.lang.Exception
 import java.net.URL
 import java.util.*
 
-class BitoducClient(
-    private val apiClient: BitoducAPIClient,
+class BrokerConsumer(
+    private val apiClient: BrokerHTTPClient,
     private val app: Javalin
 ) {
     private val handlers: MutableMap<Pair<ClientId, TopicId>, (PublicationMessage) -> Unit> = mutableMapOf()

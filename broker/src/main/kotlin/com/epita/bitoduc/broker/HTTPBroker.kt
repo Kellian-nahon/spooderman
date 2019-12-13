@@ -5,7 +5,7 @@ import com.epita.spooderman.utils.MutableMultiMap
 import com.epita.spooderman.utils.mutableMultiMapOf
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 
-class DefaultBroker : Broker {
+class HTTPBroker : Broker {
     private val topics : MutableMultiMap<TopicId, BrokerClient> = mutableMultiMapOf()
 
     override fun getTopics(): MutableMultiMap<TopicId, BrokerClient> {
