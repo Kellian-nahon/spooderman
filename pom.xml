@@ -21,6 +21,7 @@
   </properties>
 
   <modules>
+    <module>core</module>
     <module>indexer</module>
     <module>broker</module>
     <module>crawler</module>
