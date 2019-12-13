@@ -1,19 +1,39 @@
 package com.epita.indexer.controller
 
+import com.epita.indexer.Controller.dto.QueryResponse
+import com.epita.indexer.core.Querying
 import com.epita.indexer.core.RetroIndex
 import com.epita.indexer.core.SimilarityComputer
 import com.epita.indexer.tokenisation.Tokenizer
 import com.epita.indexer.vectorisation.Vectorizer
-import com.epita.spooderman.types.Document
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import io.javalin.Javalin
+import io.javalin.http.BadRequestResponse
+import java.lang.Exception
 
 
-class ComputeSimilarityController(private val tokenizer: Tokenizer, private val vectorizer: Vectorizer,
-                                  private val similarityComputer: SimilarityComputer, private val retroIndex: RetroIndex) {
+class ComputeSimilarityController(private val querying: Querying,
+                                  private val server: Javalin) {
+    init {
+        setup()
+    }
+
+    private fun query(query: String): QueryResponse {
+        return querying.getDocuments(query)
+    }
 
 
-    fun getDocuments(query: String): List<Document>{
-        val queryVector = vectorizer.vectorize(tokenizer.tokenize(query))
-        return similarityComputer.getDocsWithSimilarity(queryVector).map { (doc, _) -> doc }.toList()
+    private fun setup() {
+        server.get("/query") { ctx ->
+            val search = ctx.queryParam("q", null) ?: throw BadRequestResponse()
+            val response = query(search)
+            ctx.result(jacksonObjectMapper().writeValueAsString(response))
+        }
+
+    }
+
+    fun start(port: Int) {
+        server.start(port)
     }
 
 
