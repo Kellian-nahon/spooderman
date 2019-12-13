@@ -1,5 +1,6 @@
 package com.epita.indexer.core
 
+import com.epita.spooderman.types.Document
 import com.epita.spooderman.utils.MutableMultiMap
 import com.epita.spooderman.utils.mutableMultiMapOf
 

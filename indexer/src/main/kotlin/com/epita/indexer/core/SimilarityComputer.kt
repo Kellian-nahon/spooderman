@@ -1,5 +1,6 @@
 package com.epita.indexer.core
 
+import com.epita.spooderman.types.Document
 import kotlin.math.log
 import kotlin.math.sqrt
 

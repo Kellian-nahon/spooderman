@@ -1,6 +1,6 @@
 package com.epita.indexer.vectorisation
 
-import com.epita.indexer.core.DocumentVector
+import com.epita.spooderman.types.DocumentVector
 import com.epita.spooderman.utils.mutableMultiMapOf
 
 

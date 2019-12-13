@@ -1,10 +1,10 @@
 package com.epita.indexer.controller
 
-import com.epita.indexer.core.Document
 import com.epita.indexer.core.RetroIndex
 import com.epita.indexer.core.SimilarityComputer
 import com.epita.indexer.tokenisation.Tokenizer
 import com.epita.indexer.vectorisation.Vectorizer
+import com.epita.spooderman.types.Document
 
 
 class ComputeSimilarityController(private val tokenizer: Tokenizer, private val vectorizer: Vectorizer,

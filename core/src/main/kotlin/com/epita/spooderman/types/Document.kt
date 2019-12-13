@@ -1,4 +1,4 @@
-package com.epita.indexer.core
+package com.epita.spooderman.types
 
 typealias DocumentContent = String
 typealias DocumentVector = Map<String, Pair<Float, List<Int>>>
