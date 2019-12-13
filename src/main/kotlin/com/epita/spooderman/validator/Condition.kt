@@ -1,7 +1,7 @@
-package com.epita.reussaure.validator
+package com.epita.spooderman.validator
 
-import com.epita.reussaure.annotation.Nullable
-import com.epita.reussaure.annotation.Pure
+import com.epita.spooderman.annotation.Nullable
+import com.epita.spooderman.annotation.Pure
 
 enum class Condition(val predicate: (Any?) -> Boolean) {
     IS_NOT_NULL(Predicate.isNotNull);

@@ -1,7 +1,7 @@
 package com.epita.reussaure.provider
 
-import com.epita.reussaure.annotation.NotNull
-import com.epita.reussaure.annotation.Pure
+import com.epita.spooderman.annotation.NotNull
+import com.epita.spooderman.annotation.Pure
 import com.epita.reussaure.aspect.Aspect
 import java.util.function.Supplier
 

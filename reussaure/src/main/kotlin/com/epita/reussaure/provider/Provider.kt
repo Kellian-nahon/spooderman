@@ -1,13 +1,13 @@
 package com.epita.reussaure.provider
 
-import com.epita.reussaure.annotation.Mutate
-import com.epita.reussaure.annotation.NotNull
-import com.epita.reussaure.annotation.Nullable
-import com.epita.reussaure.annotation.Pure
+import com.epita.spooderman.annotation.Mutate
+import com.epita.spooderman.annotation.NotNull
+import com.epita.spooderman.annotation.Nullable
+import com.epita.spooderman.annotation.Pure
 import com.epita.reussaure.aspect.*
 import com.epita.reussaure.exception.ProxyTypeNotAnInterfaceException
-import com.epita.reussaure.validator.Condition
-import com.epita.reussaure.validator.Fault
+import com.epita.spooderman.validator.Condition
+import com.epita.spooderman.validator.Fault
 import java.lang.reflect.Method
 
 interface Provider<BEAN_TYPE : Any> {

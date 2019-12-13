@@ -1,4 +1,4 @@
-package com.epita.reussaure.validator
+package com.epita.spooderman.validator
 
 class Predicate {
     companion object {

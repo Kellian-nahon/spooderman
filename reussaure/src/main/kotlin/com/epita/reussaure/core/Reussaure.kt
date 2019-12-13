@@ -1,13 +1,13 @@
 package com.epita.reussaure.core
 
-import com.epita.reussaure.annotation.Mutate
-import com.epita.reussaure.annotation.NotNull
-import com.epita.reussaure.annotation.Pure
+import com.epita.spooderman.annotation.Mutate
+import com.epita.spooderman.annotation.NotNull
+import com.epita.spooderman.annotation.Pure
 import com.epita.reussaure.provider.Provider
 import com.epita.reussaure.scope.DefaultScope
 import com.epita.reussaure.scope.Scope
 import com.epita.reussaure.scope.ScopeStack
-import com.epita.reussaure.validator.Fault
+import com.epita.spooderman.validator.Fault
 import java.util.*
 
 

@@ -1,6 +1,6 @@
-package com.epita.reussaure.exception
+package com.epita.spooderman.exception
 
-import com.epita.reussaure.validator.Fault
+import com.epita.spooderman.validator.Fault
 
 class InvalidArgumentException(
         field: String,

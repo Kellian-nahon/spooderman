@@ -1,7 +1,7 @@
 package com.epita.reussaure.provider
 
-import com.epita.reussaure.annotation.Mutate
-import com.epita.reussaure.annotation.NotNull
+import com.epita.spooderman.annotation.Mutate
+import com.epita.spooderman.annotation.NotNull
 import java.util.function.Supplier
 
 class Singleton<BEAN_TYPE : Any, SUPPLIER_BEAN_TYPE : BEAN_TYPE>(provideClass: Class<BEAN_TYPE>,

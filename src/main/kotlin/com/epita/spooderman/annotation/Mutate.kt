@@ -1,6 +1,6 @@
-package com.epita.reussaure.annotation
+package com.epita.spooderman.annotation
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION, AnnotationTarget.TYPE)
-annotation class Pure {
+annotation class Mutate {
 }

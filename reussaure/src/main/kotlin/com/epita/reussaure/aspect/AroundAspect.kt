@@ -1,8 +1,8 @@
 package com.epita.reussaure.aspect
 
-import com.epita.reussaure.annotation.Mutate
+import com.epita.spooderman.annotation.Mutate
 import com.epita.reussaure.provider.Provider
-import com.epita.reussaure.validator.Fault
+import com.epita.spooderman.validator.Fault
 import org.jetbrains.annotations.NotNull
 import java.lang.reflect.Method
 import java.lang.reflect.Proxy

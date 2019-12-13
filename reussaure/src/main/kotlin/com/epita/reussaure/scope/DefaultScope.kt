@@ -1,11 +1,11 @@
 package com.epita.reussaure.scope
 
-import com.epita.reussaure.annotation.Mutate
-import com.epita.reussaure.annotation.NotNull
-import com.epita.reussaure.annotation.Pure
+import com.epita.spooderman.annotation.Mutate
+import com.epita.spooderman.annotation.NotNull
+import com.epita.spooderman.annotation.Pure
 import com.epita.reussaure.exception.BeanNotFoundException
 import com.epita.reussaure.provider.Provider
-import com.epita.reussaure.validator.Fault
+import com.epita.spooderman.validator.Fault
 
 open class DefaultScope : Scope {
     private val providers: ArrayList<Provider<Any>> = arrayListOf()

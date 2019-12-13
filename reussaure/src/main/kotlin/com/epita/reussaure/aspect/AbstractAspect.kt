@@ -1,7 +1,7 @@
 package com.epita.reussaure.aspect
 
-import com.epita.reussaure.annotation.Pure
-import com.epita.reussaure.validator.Fault
+import com.epita.spooderman.annotation.Pure
+import com.epita.spooderman.validator.Fault
 import org.jetbrains.annotations.NotNull
 import java.lang.reflect.Method
 

@@ -1,6 +1,6 @@
-package com.epita.reussaure.validator
+package com.epita.spooderman.validator
 
-import com.epita.reussaure.exception.InvalidArgumentException
+import com.epita.spooderman.exception.InvalidArgumentException
 
 enum class Fault(
         val message: String,
