@@ -5,10 +5,12 @@ import com.epita.spooderman.utils.mutableMultiMapOf
 
 class RetroIndex {
     private val index: MutableMultiMap<String, Document> = mutableMultiMapOf()
+    var documentsCount = 0
 
     fun addDocument(document: Document) {
+        documentsCount += 1
         document.vector.keys.forEach { word ->
-            index.addValue(word, document);
+            index.addValue(word, document)
         }
     }
 

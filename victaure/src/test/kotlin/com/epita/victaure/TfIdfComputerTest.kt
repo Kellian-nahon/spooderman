@@ -1,10 +1,10 @@
 package com.epita.victaure
 
-import com.epita.spooderman.core.Document
-import com.epita.victaure.core.IdfComputer
-import com.epita.spooderman.core.RetroIndex
-import com.epita.spooderman.tokenisation.*
-import com.epita.spooderman.vectorisation.Vectorizer
+import com.epita.victaure.core.Document
+import com.epita.victaure.core.RetroIndex
+import com.epita.victaure.core.SimilarityComputer
+import com.epita.victaure.tokenisation.*
+import com.epita.victaure.vectorisation.Vectorizer
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.junit.Test
@@ -61,12 +61,9 @@ class TfIdfComputerTest {
         val documents = listOf<Document>(doc1, doc2, doc3)
         val retroIndex = RetroIndex()
         documents.forEach { retroIndex.addDocument(it) }
-        val idfComputer = IdfComputer(3)
+        val idfComputer = SimilarityComputer(retroIndex)
         val queryVector = vectorizer.vectorize(tokenizer.tokenize("green rabbit"))
-        val queryVectorTfIdf = idfComputer.getVectorTfIdf(retroIndex, queryVector)
-        val queryVectorNormalized = idfComputer.normalize(queryVectorTfIdf)
-        val vectorsOfDocuments = idfComputer.computeVectorsOfDocuments(retroIndex, queryVectorNormalized, documents)
-        val rankList = idfComputer.getCosinusSimiliraty(queryVectorNormalized, vectorsOfDocuments)
+        val rankList = idfComputer.getDocsWithSimilarity(queryVector)
         print(rankList)
     }
     
