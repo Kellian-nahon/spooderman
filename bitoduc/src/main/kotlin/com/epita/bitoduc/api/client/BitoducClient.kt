@@ -41,8 +41,8 @@ class BitoducClient(
         }
     }
 
-    fun start() {
-        app.start()
+    fun start(serverPort: Int) {
+        app.start(serverPort)
         val serverURL = app.server()?.server()?.uri ?: throw Exception("Could not get server URI")
         val callbackURL = URL("${serverURL}callback")
 

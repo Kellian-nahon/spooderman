@@ -21,13 +21,11 @@ fun main(args: Array<String>) {
         }))
     }
 
-    val app = reussaure.instanceOf(Javalin::class.java)
-    app.server()?.serverPort = 8000
     val client = reussaure.instanceOf(BitoducClient::class.java)
     client.setHandler("some-topic", TestMessage::class.java) {
         println("Received message: ${it.value}")
     }
-    client.start()
+    client.start(9000)
 
     reussaure.instanceOf(BitoducProducer::class.java).sendMessage(
         "some-topic", TestMessage("Hello, World"), PublicationType.BROADCAST
