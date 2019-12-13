@@ -1,4 +1,4 @@
-package com.epita.victaure.tokenisation
+package com.epita.indexer.tokenisation
 
 import java.util.function.Function
 

@@ -1,4 +1,4 @@
-package com.epita.victaure.core
+package com.epita.indexer.core
 
 import com.epita.spooderman.utils.MutableMultiMap
 import com.epita.spooderman.utils.mutableMultiMapOf

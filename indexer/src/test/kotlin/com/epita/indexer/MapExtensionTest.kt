@@ -1,4 +1,4 @@
-package com.epita.victaure
+package com.epita.indexer
 
 import com.epita.spooderman.utils.mutableMultiMapOf
 import org.junit.Test

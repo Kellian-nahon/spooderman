@@ -1,4 +1,4 @@
-package com.epita.victaure.core
+package com.epita.indexer.core
 
 typealias DocumentContent = String
 typealias DocumentVector = Map<String, Pair<Float, List<Int>>>

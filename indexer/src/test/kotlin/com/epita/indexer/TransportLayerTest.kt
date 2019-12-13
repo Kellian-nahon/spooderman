@@ -1,4 +1,4 @@
-package com.epita.victaure
+package com.epita.indexer
 
 import org.junit.Test
 

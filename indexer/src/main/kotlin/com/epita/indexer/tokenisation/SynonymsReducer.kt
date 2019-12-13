@@ -1,4 +1,4 @@
-package com.epita.victaure.tokenisation
+package com.epita.indexer.tokenisation
 
 class SynonymsReducer(private val synonyms: Map<String, String>): WordTransformer {
     override fun apply(word: String): String? {

@@ -1,6 +1,6 @@
-package com.epita.victaure.vectorisation
+package com.epita.indexer.vectorisation
 
-import com.epita.victaure.core.DocumentVector
+import com.epita.indexer.core.DocumentVector
 import com.epita.spooderman.utils.mutableMultiMapOf
 
 

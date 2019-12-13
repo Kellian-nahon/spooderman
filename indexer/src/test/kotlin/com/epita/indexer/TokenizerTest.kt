@@ -1,6 +1,6 @@
-package com.epita.victaure
+package com.epita.indexer
 
-import com.epita.victaure.tokenisation.*
+import com.epita.indexer.tokenisation.*
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.junit.Test

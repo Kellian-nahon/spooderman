@@ -1,13 +1,12 @@
-package com.epita.victaure
+package com.epita.indexer
 
-import com.epita.victaure.core.Document
-import com.epita.victaure.core.RetroIndex
-import com.epita.victaure.core.SimilarityComputer
-import com.epita.victaure.tokenisation.*
-import com.epita.victaure.vectorisation.Vectorizer
+import com.epita.indexer.core.Document
+import com.epita.indexer.core.RetroIndex
+import com.epita.indexer.core.SimilarityComputer
+import com.epita.indexer.tokenisation.*
+import com.epita.indexer.vectorisation.Vectorizer
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import junit.framework.Assert
 import org.junit.Test
 import kotlin.test.assertEquals
 

@@ -1,10 +1,10 @@
-package com.epita.victaure.core
+package com.epita.indexer.core
 
 import com.epita.reussaure.core.Reussaure
 import com.epita.reussaure.provider.Singleton
-import com.epita.victaure.controller.ComputeSimilarityController
-import com.epita.victaure.tokenisation.*
-import com.epita.victaure.vectorisation.Vectorizer
+import com.epita.indexer.controller.ComputeSimilarityController
+import com.epita.indexer.tokenisation.*
+import com.epita.indexer.vectorisation.Vectorizer
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import java.util.function.Supplier

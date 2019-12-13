@@ -21,7 +21,7 @@
   </properties>
 
   <modules>
-    <module>victaure</module>
+    <module>indexer</module>
     <module>reussaure</module>
     <module>broker</module>
     <module>urlvalidator</module>

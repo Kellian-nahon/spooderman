@@ -1,10 +1,10 @@
-package com.epita.victaure.controller
+package com.epita.indexer.controller
 
-import com.epita.victaure.core.Document
-import com.epita.victaure.core.RetroIndex
-import com.epita.victaure.core.SimilarityComputer
-import com.epita.victaure.tokenisation.Tokenizer
-import com.epita.victaure.vectorisation.Vectorizer
+import com.epita.indexer.core.Document
+import com.epita.indexer.core.RetroIndex
+import com.epita.indexer.core.SimilarityComputer
+import com.epita.indexer.tokenisation.Tokenizer
+import com.epita.indexer.vectorisation.Vectorizer
 
 
 class ComputeSimilarityController(private val tokenizer: Tokenizer, private val vectorizer: Vectorizer,

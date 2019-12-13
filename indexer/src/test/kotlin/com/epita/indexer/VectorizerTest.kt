@@ -1,6 +1,6 @@
-package com.epita.victaure
+package com.epita.indexer
 
-import com.epita.victaure.vectorisation.Vectorizer
+import com.epita.indexer.vectorisation.Vectorizer
 import org.junit.Test
 import kotlin.test.assertEquals
 

@@ -1,4 +1,4 @@
-package com.epita.victaure.core
+package com.epita.indexer.core
 
 import kotlin.math.log
 import kotlin.math.sqrt
