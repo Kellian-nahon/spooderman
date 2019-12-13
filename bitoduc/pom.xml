@@ -76,7 +76,7 @@
         <dependency>
             <groupId>com.github.jkcclemens</groupId>
             <artifactId>khttp</artifactId>
-            <version>-SNAPSHOT</version>
+            <version>RELEASE</version>
         </dependency>
     </dependencies>
 
