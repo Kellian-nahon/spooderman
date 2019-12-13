@@ -13,7 +13,7 @@
     <dependencies>
         <dependency>
             <groupId>com.epita</groupId>
-            <artifactId>spooderman</artifactId>
+            <artifactId>reussaure</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

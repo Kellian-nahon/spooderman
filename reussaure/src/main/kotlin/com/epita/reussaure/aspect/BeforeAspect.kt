@@ -8,10 +8,11 @@ import java.lang.reflect.Method
 import java.lang.reflect.Proxy
 
 class BeforeAspect<BEAN_TYPE : Any>(
-        @NotNull targetMethod: Method,
-        @NotNull aspect: AspectConsumer<BEAN_TYPE>)
+    @NotNull targetMethod: Method,
+    @NotNull aspect: AspectConsumer<BEAN_TYPE>)
     : AbstractAspect<BEAN_TYPE, AspectConsumer<BEAN_TYPE>>(targetMethod, aspect) {
 
+    @Suppress("UNCHECKED_CAST")
     @NotNull
     @Mutate
     override fun proxify(@NotNull provider: Provider<BEAN_TYPE>, @NotNull bean: BEAN_TYPE): BEAN_TYPE {

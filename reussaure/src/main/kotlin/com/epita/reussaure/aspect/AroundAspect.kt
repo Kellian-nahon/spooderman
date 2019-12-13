@@ -12,6 +12,7 @@ class AroundAspect<BEAN_TYPE : Any>(
         @NotNull aspect: ProvidingAspectConsumer<BEAN_TYPE>)
     : AbstractAspect<BEAN_TYPE, ProvidingAspectConsumer<BEAN_TYPE>>(targetMethod, aspect) {
 
+    @Suppress("UNCHECKED_CAST")
     @NotNull
     @Mutate
     override fun proxify(@NotNull provider: Provider<BEAN_TYPE>, @NotNull bean: BEAN_TYPE): BEAN_TYPE {
@@ -19,7 +20,7 @@ class AroundAspect<BEAN_TYPE : Any>(
         return Proxy.newProxyInstance(
                 bean.javaClass.classLoader,
                 arrayOf(provider.provideForClass())
-        ) { obj: Any, method: Method, args: Array<Any>? ->
+        ) { _: Any, method: Method, args: Array<Any>? ->
             val nonNullArgs = args ?: arrayOf()
             if (checkMethod(method)) {
                 aspect({ method.invoke(bean, *nonNullArgs) }, bean, method, nonNullArgs)

@@ -10,6 +10,7 @@ import com.epita.spooderman.validator.Fault
 open class DefaultScope : Scope {
     private val providers: ArrayList<Provider<Any>> = arrayListOf()
 
+    @Suppress("UNCHECKED_CAST")
     @Mutate
     override fun <BEAN_TYPE : Any> addProvider(@NotNull provider: Provider<BEAN_TYPE>,
                                                @NotNull init: Provider<BEAN_TYPE>.() -> Unit) {
@@ -18,6 +19,7 @@ open class DefaultScope : Scope {
         providers.add(provider as Provider<Any>)
     }
 
+    @Suppress("UNCHECKED_CAST")
     @NotNull
     @Pure
     override fun <@NotNull BEAN_TYPE : Any> getProvider(@NotNull providerClass: Class<BEAN_TYPE>): Provider<BEAN_TYPE> {

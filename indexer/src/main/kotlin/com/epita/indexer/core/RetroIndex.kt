@@ -4,7 +4,8 @@ import com.epita.spooderman.utils.MutableMultiMap
 import com.epita.spooderman.utils.mutableMultiMapOf
 
 class RetroIndex {
-    private val index: MutableMultiMap<String, Document> = mutableMultiMapOf()
+    private val index: MutableMultiMap<String, Document> =
+        mutableMultiMapOf()
     var documentsCount = 0
 
     fun addDocument(document: Document) {
