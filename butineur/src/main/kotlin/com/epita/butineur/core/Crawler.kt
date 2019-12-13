@@ -21,7 +21,7 @@ interface Crawler {
         val fullText = fetcher.fetch(url)
 
         val text = cleaner.cleanup(fullText)
-        val urls = urlSeeker.seekUrl(fullText)
+        val urls = urlSeeker.seekUrl(url, fullText)
 
         return Pair(text, urls)
     }

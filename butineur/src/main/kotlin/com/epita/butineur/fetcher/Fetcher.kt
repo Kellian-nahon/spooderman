@@ -1,7 +1,12 @@
 package com.epita.butineur.fetcher
 
+import com.epita.spooderman.annotation.NotNull
+import com.epita.spooderman.annotation.Pure
 import java.net.URL
 
 interface Fetcher {
-    fun fetch(url: URL) : String
+
+    @Pure
+    @NotNull
+    fun fetch(@NotNull url: URL) : String
 }
