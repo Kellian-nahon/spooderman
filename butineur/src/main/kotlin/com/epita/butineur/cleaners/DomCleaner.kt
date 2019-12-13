@@ -1,10 +1,10 @@
-package com.epita.victaure.cleaners
+package com.epita.butineur.cleaners
 
 import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
 
-class DOMCleaner: Cleaner {
+class DomCleaner(private val htmlDocument: Document): Cleaner {
     override fun cleanup(input: String): String {
-        val htmlDocument = Jsoup.parse(input);
         return "${htmlDocument.title()} ${htmlDocument.body().text()}"
     }
 }
