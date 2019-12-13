@@ -1,8 +1,9 @@
 package com.epita.bitoduc.broker
 
+import com.epita.bitoduc.api.dto.PublicationMessage
 import com.epita.spooderman.utils.MutableMultiMap
 import com.epita.spooderman.utils.mutableMultiMapOf
-import java.net.URL
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 
 class DefaultBroker : Broker {
     private val topics : MutableMultiMap<TopicId, BrokerClient> = mutableMultiMapOf()
@@ -11,11 +12,9 @@ class DefaultBroker : Broker {
         return topics
     }
 
-    override fun sendMessageToURL(url: URL, topicId: TopicId, message: Message) {
-        khttp.async.post(url.toString(), data=mapOf(
-            Pair("topicId", topicId),
-            Pair("message", "Message")
-        )) {
+    override fun sendMessageToClient(client: BrokerClient, topicId: TopicId, message: String) {
+        val payload = jacksonObjectMapper().writeValueAsString(PublicationMessage(client.id, topicId, message))
+        khttp.async.post(client.url.toString(), data=payload) {
             // TODO: Log response
             println("URL: $url Status Code: $statusCode")
         }
