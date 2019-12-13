@@ -2,7 +2,7 @@ package com.epita.broker.api.client
 
 import com.epita.broker.api.dto.PublishRequest
 import com.epita.broker.broker.ClientId
-import com.epita.broker.broker.TopicId
+import com.epita.spooderman.types.TopicId
 import com.epita.broker.core.PublicationType
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import java.util.*

@@ -1,6 +1,7 @@
 package com.epita.broker.broker
 
 import com.epita.broker.core.PublicationType
+import com.epita.spooderman.types.TopicId
 import com.epita.spooderman.utils.MutableMultiMap
 import java.net.URL
 

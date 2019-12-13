@@ -3,7 +3,7 @@ package com.epita.broker.api.client
 import com.epita.broker.api.dto.PublicationMessage
 import com.epita.broker.api.dto.SubscribeRequest
 import com.epita.broker.broker.ClientId
-import com.epita.broker.broker.TopicId
+import com.epita.spooderman.types.TopicId
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.javalin.Javalin
 import io.javalin.plugin.json.JavalinJson

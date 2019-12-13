@@ -1,6 +1,7 @@
 package com.epita.broker
 
 import com.epita.broker.broker.*
+import com.epita.spooderman.types.containsTopic
 import org.junit.Test
 import java.net.URL
 

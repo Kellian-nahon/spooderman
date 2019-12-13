@@ -1,4 +1,4 @@
-package com.epita.broker.broker
+package com.epita.spooderman.types
 
 typealias TopicId = String
 

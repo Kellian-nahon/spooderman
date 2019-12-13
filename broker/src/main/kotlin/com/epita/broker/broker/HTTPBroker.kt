@@ -1,6 +1,7 @@
 package com.epita.broker.broker
 
 import com.epita.broker.api.dto.PublicationMessage
+import com.epita.spooderman.types.TopicId
 import com.epita.spooderman.utils.MutableMultiMap
 import com.epita.spooderman.utils.mutableMultiMapOf
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
