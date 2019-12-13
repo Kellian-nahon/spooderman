@@ -7,7 +7,9 @@ import com.epita.victaure.tokenisation.*
 import com.epita.victaure.vectorisation.Vectorizer
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import junit.framework.Assert
 import org.junit.Test
+import kotlin.test.assertEquals
 
 class TfIdfComputerTest {
     
@@ -58,13 +60,15 @@ class TfIdfComputerTest {
         val content3 = "The green rabbit is eating in a green river."
         val tokens3 = tokenizer.tokenize(content3)
         val doc3: Document = Document(content3, tokens3, vectorizer.vectorize(tokens3))
-        val documents = listOf<Document>(doc1, doc2, doc3)
+        val documents = listOf(doc1, doc2, doc3)
         val retroIndex = RetroIndex()
         documents.forEach { retroIndex.addDocument(it) }
         val idfComputer = SimilarityComputer(retroIndex)
         val queryVector = vectorizer.vectorize(tokenizer.tokenize("green rabbit"))
         val rankList = idfComputer.getDocsWithSimilarity(queryVector)
-        print(rankList)
+        for (i in rankList.indices) {
+            assertEquals(documents[i], rankList[i].first)
+        }
     }
     
 }

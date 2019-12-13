@@ -2,7 +2,7 @@ package com.epita.victaure.core
 
 import com.epita.reussaure.core.Reussaure
 import com.epita.reussaure.provider.Singleton
-import com.epita.victaure.Controller.ComputeSimilarityController
+import com.epita.victaure.controller.ComputeSimilarityController
 import com.epita.victaure.tokenisation.*
 import com.epita.victaure.vectorisation.Vectorizer
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
