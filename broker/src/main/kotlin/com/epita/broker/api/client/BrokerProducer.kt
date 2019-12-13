@@ -1,0 +1,24 @@
+package com.epita.broker.api.client
+
+import com.epita.broker.api.dto.PublishRequest
+import com.epita.broker.broker.ClientId
+import com.epita.broker.broker.TopicId
+import com.epita.broker.core.PublicationType
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import java.util.*
+
+class BrokerProducer(
+    private val apiClient: BrokerHTTPClient,
+    private val clientId: ClientId = UUID.randomUUID().toString()
+) {
+    fun <MESSAGE_TYPE> sendMessage(topicId: TopicId, message: MESSAGE_TYPE, publicationType: PublicationType, callback: Callback) {
+        val mapper = jacksonObjectMapper()
+        val serializedMessage = mapper.writeValueAsString(message)
+        apiClient.publish(PublishRequest(
+            clientId,
+            topicId,
+            serializedMessage,
+            publicationType
+        ), callback)
+    }
+}

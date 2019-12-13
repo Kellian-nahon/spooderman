@@ -2,13 +2,14 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/butineur/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/butineur/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/broker/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crawler/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crawler/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/reussaure" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/reussaure/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/reussaure/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/tourniquet/src/main/kotlin" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/urlvalidator/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/victaure" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/victaure/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/victaure/src/main/resources" charset="UTF-8" />

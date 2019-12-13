@@ -23,8 +23,9 @@
   <modules>
     <module>victaure</module>
     <module>reussaure</module>
-    <module>bitoduc</module>
-    <module>tourniquet</module>
+    <module>broker</module>
+    <module>urlvalidator</module>
+    <module>crawler</module>
   </modules>
 
   <dependencies>
@@ -50,11 +51,6 @@
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.epita</groupId>
-      <artifactId>reussaure</artifactId>
-      <version>1.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
