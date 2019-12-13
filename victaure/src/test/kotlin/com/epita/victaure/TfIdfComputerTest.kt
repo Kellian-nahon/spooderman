@@ -66,8 +66,9 @@ class TfIdfComputerTest {
         val idfComputer = SimilarityComputer(retroIndex)
         val queryVector = vectorizer.vectorize(tokenizer.tokenize("green rabbit"))
         val rankList = idfComputer.getDocsWithSimilarity(queryVector)
+        val rankedDocuments = listOf(doc3, doc2, doc1)
         for (i in rankList.indices) {
-            assertEquals(documents[i], rankList[i].first)
+            assertEquals(rankedDocuments[i], rankList[i].first)
         }
     }
     
