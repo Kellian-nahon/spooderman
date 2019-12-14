@@ -18,7 +18,7 @@ class IndexerBrokerWrapper(private val indexer: Indexer,
 
     private fun setUp() {
         brokerConsumer.setHandler(Topics.DocumentizeContentCommand.topicId, DocumentizeContentCommand::class.java) {
-            logger().trace("Handle DocumentizeContentCommand: %s", it.url.toString())
+            logger().trace("Handle DocumentizeContentCommand: ${it.url}")
             val document = indexer.documentize(it.content, it.url)
             brokerProducer.sendMessage(
                 Topics.DocumentizedContentEvent.topicId, DocumentizedContentEvent(document), PublicationType.ONCE
@@ -31,7 +31,7 @@ class IndexerBrokerWrapper(private val indexer: Indexer,
     }
 
     fun start(port: Int) {
-        logger().trace("Start on port: %d", port)
+        logger().trace("Start on port: $port")
         brokerConsumer.start(port)
     }
 
