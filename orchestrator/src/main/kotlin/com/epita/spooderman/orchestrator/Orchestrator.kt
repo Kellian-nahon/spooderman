@@ -3,6 +3,7 @@ package com.epita.spooderman.orchestrator
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerProducer
 import com.epita.broker.core.PublicationType
+import com.epita.reussaure.bean.LogBean
 import com.epita.spooderman.Topics
 import com.epita.spooderman.commands.CrawlURLCommand
 import com.epita.spooderman.commands.DocumentizeContentCommand
@@ -13,48 +14,68 @@ import com.epita.spooderman.events.DocumentizedContentEvent
 import com.epita.spooderman.events.FoundURLEvent
 import com.epita.spooderman.events.ValidatedURLEvent
 
-class Orchestrator(private val consumer: BrokerConsumer, private val producer: BrokerProducer) {
+class Orchestrator(private val consumer: BrokerConsumer, private val producer: BrokerProducer): LogBean {
     init {
         setup()
     }
 
     private fun onValidatedURLEvent(event: ValidatedURLEvent) {
+        logger().info("Received ValidatedURLEvent")
         producer.sendMessage(
             Topics.CrawlURLCommand.topicId,
             CrawlURLCommand(event.url),
             PublicationType.ONCE
-        ) { response, error ->
-            // TODO: Log
+        ) { _, error ->
+            error?.let {
+                logger().warn("Error while sending CrawlURLCommand: $error")
+            } ?: run {
+                logger().info("Sent CrawlURLCommand")
+            }
         }
     }
 
     private fun onCrawledURLEvent(event: CrawledURLEvent) {
+        logger().info("Received CrawledURLEvent")
         producer.sendMessage(
             Topics.DocumentizeContentCommand.topicId,
             DocumentizeContentCommand(event.content, event.url),
             PublicationType.ONCE
-        ) { response, error ->
-            // TODO: Log
+        ) { _, error ->
+            error?.let {
+                logger().warn("Error while sending CrawledURLEvent: $error")
+            } ?: run {
+                logger().info("Sent DocumentizeContentCommand")
+            }
         }
     }
 
     private fun onDocumentizedContentEvent(event: DocumentizedContentEvent) {
+        logger().info("Received DocumentizedContentEvent")
         producer.sendMessage(
             Topics.IndexDocumentCommand.topicId,
             IndexDocumentCommand(event.document),
             PublicationType.ONCE
-        ) { response, error ->
-            // TODO: Log
+        ) { _, error ->
+            error?.let {
+                logger().warn("Error while sending IndexDocumentCommand: $error")
+            } ?: run {
+                logger().info("Sent IndexDocumentCommand")
+            }
         }
     }
 
     private fun onFoundURLEvent(event: FoundURLEvent) {
+        logger().info("Received FoundURLEvent")
         producer.sendMessage(
             Topics.ValidateURLCommand.topicId,
             ValidateURLCommand(event.url),
             PublicationType.ONCE
-        ) { response, error ->
-
+        ) { _, error ->
+            error?.let {
+                logger().warn("Error while sending ValidateURLCommand: $error")
+            } ?: run {
+                logger().info("Sent ValidateURLCommand")
+            }
         }
     }
 
