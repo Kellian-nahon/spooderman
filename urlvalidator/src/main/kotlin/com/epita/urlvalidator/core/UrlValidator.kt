@@ -2,27 +2,37 @@ package com.epita.urlvalidator.core
 
 import com.epita.reussaure.bean.LogBean
 import com.epita.spooderman.annotation.Mutate
-import com.epita.urlvalidator.utils.UrlCleaner
+import java.net.HttpURLConnection
 import java.net.URL
 
 interface UrlValidator : LogBean {
-    val urlList: MutableSet<URL>
+    val validatedURLs: MutableSet<URL>
 
     @Mutate
     fun validateUrl(url: URL) : Boolean {
-        logger().trace("Checking url: ${url}")
+        logger().info("Checking url: ${url}")
 
-        val urlNoAnchor = UrlCleaner.removeAnchor(url)
+        val cleanedURL = URL("${url.protocol}://${url.host}${url.path}")
 
-        var isInserted = urlList.add(urlNoAnchor)
-
-        if (isInserted) {
-            logger().info("Validated url: ${url}")
-        }
-        else {
-            logger().info("Refused url: ${url}")
+        val inserted = validatedURLs.add(cleanedURL)
+        if (!inserted) {
+            logger().trace("URL was already treated")
+            return false
         }
 
-        return isInserted
+        var isValid = false
+        with (cleanedURL.openConnection() as HttpURLConnection) {
+            requestMethod = "HEAD"
+            val contentType = headerFields["Content-Type"]
+            if (this.responseCode < 300) {
+                contentType?.let {
+                    if (it.any { str -> str.contains("text/html") }) {
+                        isValid = true
+                    }
+                }
+            }
+        }
+
+        return isValid
     }
 }

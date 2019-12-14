@@ -17,7 +17,12 @@ import com.epita.spooderman.Topics
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.DefaultHelpFormatter
 import com.xenomachina.argparser.default
+import com.xenomachina.argparser.mainBody
 import io.javalin.Javalin
+import io.javalin.core.JavalinConfig
+import io.javalin.core.JavalinServer
+import org.eclipse.jetty.server.Server
+import org.eclipse.jetty.util.thread.QueuedThreadPool
 import java.net.URL
 import java.util.function.Supplier
 
@@ -31,7 +36,7 @@ class CLIArgs(parser: ArgParser) {
     }.default { "" }
 }
 
-fun main(args: Array<String>) {
+fun main(args: Array<String>) = mainBody {
     ArgParser(args, helpFormatter = DefaultHelpFormatter(
         """
             A service use to crawl URLs.${"\n"}

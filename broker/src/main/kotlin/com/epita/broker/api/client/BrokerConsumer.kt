@@ -42,8 +42,8 @@ class BrokerConsumer(
         clientId: ClientId = UUID.randomUUID().toString(),
         onMessage: (MESSAGE_TYPE) -> Unit
     ) {
+        logger().info("Adding handler for client: ${clientId} and topic: ${topicId}")
         handlers[Pair(clientId, topicId)] = {
-            logger().info("Adding handler for client: ${clientId} and topic: ${topicId}")
             onMessage(jacksonObjectMapper().readValue(it.message, messageType))
         }
     }

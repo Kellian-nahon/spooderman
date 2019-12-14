@@ -13,25 +13,22 @@ import com.epita.spooderman.events.CrawledURLEvent
 import com.epita.spooderman.events.DocumentizedContentEvent
 import com.epita.spooderman.events.FoundURLEvent
 import com.epita.spooderman.events.ValidatedURLEvent
+import java.net.URL
+import java.util.*
+import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 class Orchestrator(private val consumer: BrokerConsumer, private val producer: BrokerProducer): LogBean {
     init {
         setup()
     }
 
+    private val urlsToCrawl: Queue<URL> = LinkedList()
+    private val executor= Executors.newScheduledThreadPool(1)
+
     private fun onValidatedURLEvent(event: ValidatedURLEvent) {
         logger().info("Received ValidatedURLEvent")
-        producer.sendMessage(
-            Topics.CrawlURLCommand.topicId,
-            CrawlURLCommand(event.url),
-            PublicationType.ONCE
-        ) { _, error ->
-            error?.let {
-                logger().warn("Error while sending CrawlURLCommand: $error")
-            } ?: run {
-                logger().info("Sent CrawlURLCommand")
-            }
-        }
+        urlsToCrawl.add(event.url)
     }
 
     private fun onCrawledURLEvent(event: CrawledURLEvent) {
@@ -102,7 +99,28 @@ class Orchestrator(private val consumer: BrokerConsumer, private val producer: B
         ) { onFoundURLEvent(it) }
     }
 
+    private fun crawlURL() {
+        urlsToCrawl.poll()?.let{ url ->
+            logger().info("Crawling URL: $url")
+            producer.sendMessage(
+                Topics.CrawlURLCommand.topicId,
+                CrawlURLCommand(url),
+                PublicationType.ONCE
+            ) { _, error ->
+                error?.let {
+                    logger().warn("Error while sending CrawlURLCommand: $error")
+                } ?: run {
+                    logger().info("Sent CrawlURLCommand")
+                }
+            }
+        }
+    }
+
     fun start(serverPort: Int) {
         consumer.start(serverPort)
+        executor.scheduleAtFixedRate( {
+            logger().info("Executor called")
+            crawlURL()
+        }, 0, 500, TimeUnit.MILLISECONDS)
     }
 }

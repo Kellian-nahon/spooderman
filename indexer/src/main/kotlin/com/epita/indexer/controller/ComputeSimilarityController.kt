@@ -6,7 +6,6 @@ import com.epita.reussaure.bean.LogBean
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.javalin.Javalin
 import io.javalin.http.BadRequestResponse
-import kotlin.math.log
 
 
 class ComputeSimilarityController(private val querying: Querying,
@@ -25,7 +24,7 @@ class ComputeSimilarityController(private val querying: Querying,
         server.get("/query") { ctx ->
             val search = ctx.queryParam("q", null) ?: throw BadRequestResponse()
             val response = query(search)
-            ctx.result(jacksonObjectMapper().writeValueAsString(response))
+            ctx.json(jacksonObjectMapper().writeValueAsString(response))
         }
 
     }

@@ -13,7 +13,7 @@ import java.net.URL
 
 class DefaultUrlValidator(private val consumer: BrokerConsumer,
                           private val producer: BrokerProducer) : UrlValidator, LogBean {
-    override val urlList: MutableSet<URL> = mutableSetOf()
+    override val validatedURLs: MutableSet<URL> = mutableSetOf()
 
     init {
         setup()
