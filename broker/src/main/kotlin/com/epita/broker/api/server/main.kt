@@ -12,6 +12,7 @@ import java.io.File
 import java.util.function.Supplier
 
 fun main(args: Array<String>) {
+    val port = args[0].toInt()
     val reussaure = Reussaure {
         val eventLogFile = File(args.getOrNull(1) ?: "event_log.txt")
         addProvider(Singleton(EventLogger::class.java, Supplier { FileEventLogger(eventLogFile.outputStream()) }))
@@ -25,5 +26,5 @@ fun main(args: Array<String>) {
         }))
     }
 
-    reussaure.instanceOf(BrokerHTTPServer::class.java).start(7000)
+    reussaure.instanceOf(BrokerHTTPServer::class.java).start(port)
 }

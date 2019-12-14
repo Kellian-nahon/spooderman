@@ -1,15 +1,15 @@
+package com.epita.urlvalidator
+
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerHTTPClient
 import com.epita.broker.api.client.BrokerProducer
 import com.epita.reussaure.core.Reussaure
 import com.epita.reussaure.provider.Singleton
-import com.epita.urlvalidator.DefaultUrlValidator
 import io.javalin.Javalin
 import java.net.URL
 import java.util.function.Supplier
 
 fun main(args: Array<String>) {
-
     // TODO: Check args
     val brokerURL = args[0]
     val listeningPort = args[1].toInt()

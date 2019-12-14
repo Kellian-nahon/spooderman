@@ -1,5 +1,6 @@
 package com.epita.crawler
 
+import com.epita.reussaure.core.Reussaure
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerHTTPClient
 import com.epita.broker.api.client.BrokerProducer
@@ -10,7 +11,6 @@ import com.epita.crawler.fetcher.DefaultFetcher
 import com.epita.crawler.fetcher.Fetcher
 import com.epita.crawler.urlseeker.DomUrlSeeker
 import com.epita.crawler.urlseeker.UrlSeeker
-import com.epita.reussaure.core.Reussaure
 import com.epita.reussaure.provider.Singleton
 import io.javalin.Javalin
 import java.net.URL
