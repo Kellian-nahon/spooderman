@@ -2,14 +2,11 @@ package com.epita.indexer.core
 
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerHTTPClient
-import com.epita.broker.api.client.BrokerProducer
 import com.epita.indexer.controller.ComputeSimilarityController
 import com.epita.indexer.tokenisation.*
 import com.epita.indexer.vectorisation.Vectorizer
 import com.epita.reussaure.core.Reussaure
 import com.epita.reussaure.provider.Singleton
-import com.epita.spooderman.Topics
-import com.epita.spooderman.commands.IndexDocumentCommand
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.javalin.Javalin
