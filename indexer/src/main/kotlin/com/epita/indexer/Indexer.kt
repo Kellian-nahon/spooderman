@@ -1,8 +1,8 @@
 package com.epita.indexer
 
-import com.epita.indexer.core.Document
 import com.epita.indexer.tokenisation.Tokenizer
 import com.epita.indexer.vectorisation.Vectorizer
+import com.epita.spooderman.types.Document
 
 
 class Indexer(private val tokenizer: Tokenizer,

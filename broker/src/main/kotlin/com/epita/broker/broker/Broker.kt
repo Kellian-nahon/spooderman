@@ -57,19 +57,22 @@ interface Broker : LogBean {
             logger().warn("No clients subscribed on topic: ${topicId}")
         }
 
-        if (subscribedClients.isEmpty()) {
-            return
-        }
+        subscribedClients?.let {
+            if (subscribedClients.isEmpty()) {
+                return
+            }
 
-        eventLogger.logEvent(topicId, message)
+            eventLogger.logEvent(topicId, message)
 
-        if (type == PublicationType.ONCE) {
-            val client = subscribedClients.random()
-            sendMessageToClient(client.url, PublicationMessage(client.id, topicId, message))
-        } else {
-            subscribedClients.forEach { client ->
+            if (type == PublicationType.ONCE) {
+                val client = subscribedClients.random()
                 sendMessageToClient(client.url, PublicationMessage(client.id, topicId, message))
+            } else {
+                subscribedClients.forEach { client ->
+                    sendMessageToClient(client.url, PublicationMessage(client.id, topicId, message))
+                }
             }
         }
+
     }
 }
