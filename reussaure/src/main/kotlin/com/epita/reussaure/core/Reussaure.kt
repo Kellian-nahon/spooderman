@@ -1,13 +1,11 @@
 package com.epita.reussaure.core
 
 import com.epita.spooderman.annotation.Mutate
-import com.epita.spooderman.annotation.NotNull
 import com.epita.spooderman.annotation.Pure
 import com.epita.reussaure.provider.Provider
 import com.epita.reussaure.scope.DefaultScope
 import com.epita.reussaure.scope.Scope
 import com.epita.reussaure.scope.ScopeStack
-import com.epita.spooderman.validator.Fault
 import java.util.*
 
 
@@ -20,30 +18,24 @@ class Reussaure(init: Reussaure.() -> Unit = {}) : ScopeStack, Scope {
         init.invoke(this)
     }
 
-    @NotNull
     @Pure
-    fun <BEAN_TYPE : Any> instanceOf(@NotNull expectedClass: Class<BEAN_TYPE>): BEAN_TYPE {
-        Fault.NULL.validate(expectedClass, "expectedClass")
+    fun <BEAN_TYPE : Any> instanceOf(expectedClass: Class<BEAN_TYPE>): BEAN_TYPE {
         return getProvider(expectedClass).provide()
     }
 
-    @NotNull
     @Pure
     override fun getScopeStack(): Deque<Scope> {
         return scopeDeque
     }
 
     @Mutate
-    override fun <BEAN_TYPE : Any> addProvider(@NotNull provider: Provider<BEAN_TYPE>,
-                                               @NotNull init: Provider<BEAN_TYPE>.() -> Unit) {
-        Fault.NULL.validate(Pair(provider, "provider"), Pair(init, "init"))
+    override fun <BEAN_TYPE : Any> addProvider(provider: Provider<BEAN_TYPE>,
+                                               init: Provider<BEAN_TYPE>.() -> Unit) {
         getHead().addProvider(provider, init)
     }
 
     @Pure
-    @NotNull
-    override fun <BEAN_TYPE : Any> getProvider(@NotNull providerClass: Class<BEAN_TYPE>): Provider<BEAN_TYPE> {
-        Fault.NULL.validate(providerClass, "providerClass")
+    override fun <BEAN_TYPE : Any> getProvider(providerClass: Class<BEAN_TYPE>): Provider<BEAN_TYPE> {
         return getHead().getProvider(providerClass)
     }
 }

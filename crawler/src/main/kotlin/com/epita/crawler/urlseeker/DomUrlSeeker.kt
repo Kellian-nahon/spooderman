@@ -1,7 +1,6 @@
 package com.epita.crawler.urlseeker
 
 import com.epita.reussaure.bean.LogBean
-import com.epita.spooderman.annotation.NotNull
 import com.epita.spooderman.annotation.Pure
 import org.jsoup.Jsoup
 import java.net.URL

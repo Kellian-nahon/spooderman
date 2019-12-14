@@ -1,6 +1,5 @@
 package com.epita.crawler.fetcher
 
-import com.epita.spooderman.annotation.NotNull
 import com.epita.spooderman.annotation.Pure
 import java.net.URL
 

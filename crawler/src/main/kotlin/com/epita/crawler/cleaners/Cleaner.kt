@@ -1,6 +1,5 @@
 package com.epita.crawler.cleaners
 
-import com.epita.spooderman.annotation.NotNull
 import com.epita.spooderman.annotation.Pure
 
 interface Cleaner {

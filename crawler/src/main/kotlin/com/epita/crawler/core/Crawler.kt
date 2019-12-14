@@ -5,8 +5,6 @@ import com.epita.crawler.fetcher.Fetcher
 import com.epita.crawler.urlseeker.UrlSeeker
 import com.epita.reussaure.bean.LogBean
 import com.epita.spooderman.annotation.Mutate
-import com.epita.spooderman.annotation.NotNull
-import com.epita.spooderman.validator.Fault
 import java.net.URL
 
 interface Crawler : LogBean{
