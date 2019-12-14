@@ -30,7 +30,4 @@ class ComputeSimilarityController(private val querying: Querying,
     fun start(port: Int) {
         server.start(port)
     }
-
-
-
 }
