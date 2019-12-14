@@ -1,4 +1,4 @@
-package com.epita.broker.api.client
+package com.epita.broker.exception
 
 import khttp.responses.Response
 import kotlin.Exception

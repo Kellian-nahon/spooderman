@@ -7,6 +7,5 @@ import java.net.URL
 interface Fetcher {
 
     @Pure
-    @NotNull
-    fun fetch(@NotNull url: URL) : String
+    fun fetch(url: URL) : String
 }
