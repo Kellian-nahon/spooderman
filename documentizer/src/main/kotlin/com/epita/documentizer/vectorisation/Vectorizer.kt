@@ -1,4 +1,4 @@
-package com.epita.indexer.vectorisation
+package com.epita.documentizer.vectorisation
 
 import com.epita.spooderman.types.DocumentVector
 import com.epita.spooderman.utils.mutableMultiMapOf

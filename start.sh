@@ -17,7 +17,7 @@ case $command in
   "urlvalidator" )
     java -cp ./urlvalidator/target/urlvalidator-$SUFFIX com.epita.urlvalidator.MainKt $@ ;;
   "indexer" )
-    java -cp ./indexer/target/indexer-$SUFFIX com.epita.indexer.core.IndexMainKt $@ ;;
+    java -cp ./indexer/target/indexer-$SUFFIX com.epita.indexer.MainKt $@ ;;
   "documentizer" )
-    java -cp ./indexer/target/indexer-$SUFFIX com.epita.indexer.DocumentizerMainKt $@ ;;
+    java -cp ./documentizer/target/documentizer-$SUFFIX com.epita.documentizer.MainKt $@ ;;
 esac

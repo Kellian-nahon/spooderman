@@ -1,6 +1,6 @@
 package com.epita.indexer
 
-import com.epita.indexer.vectorisation.Vectorizer
+import com.epita.documentizer.vectorisation.Vectorizer
 import org.junit.Test
 import kotlin.test.assertEquals
 

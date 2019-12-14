@@ -1,4 +1,4 @@
-package com.epita.indexer.tokenisation
+package com.epita.documentizer.tokenisation
 
 class Tokenizer(private val splitter: Splitter, private val transformers: List<WordTransformer>) {
     fun tokenize(text: String): List<String> {

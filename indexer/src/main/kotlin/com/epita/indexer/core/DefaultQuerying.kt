@@ -2,8 +2,8 @@ package com.epita.indexer.core
 
 import com.epita.indexer.controller.dto.DocumentResponse
 import com.epita.indexer.controller.dto.QueryResponse
-import com.epita.indexer.tokenisation.Tokenizer
-import com.epita.indexer.vectorisation.Vectorizer
+import com.epita.documentizer.tokenisation.Tokenizer
+import com.epita.documentizer.vectorisation.Vectorizer
 import com.epita.reussaure.bean.LogBean
 
 class DefaultQuerying(private val tokenizer: Tokenizer, private val vectorizer: Vectorizer,

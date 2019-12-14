@@ -1,4 +1,4 @@
-package com.epita.indexer.tokenisation
+package com.epita.documentizer.tokenisation
 
 import java.util.function.Function
 

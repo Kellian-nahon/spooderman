@@ -1,13 +1,13 @@
-package com.epita.indexer
+package com.epita.documentizer
 
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerProducer
 import com.epita.broker.core.PublicationType
+import com.epita.documentizer.core.Indexer
 import com.epita.reussaure.bean.LogBean
 import com.epita.spooderman.Topics
 import com.epita.spooderman.commands.DocumentizeContentCommand
 import com.epita.spooderman.events.DocumentizedContentEvent
-import kotlin.math.log
 
 class IndexerBrokerWrapper(private val indexer: Indexer,
                            private val brokerConsumer: BrokerConsumer,

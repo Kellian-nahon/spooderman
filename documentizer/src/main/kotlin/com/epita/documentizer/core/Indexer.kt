@@ -1,7 +1,7 @@
-package com.epita.indexer
+package com.epita.documentizer.core
 
-import com.epita.indexer.tokenisation.Tokenizer
-import com.epita.indexer.vectorisation.Vectorizer
+import com.epita.documentizer.tokenisation.Tokenizer
+import com.epita.documentizer.vectorisation.Vectorizer
 import com.epita.reussaure.bean.LogBean
 import com.epita.spooderman.types.Document
 import java.net.URL

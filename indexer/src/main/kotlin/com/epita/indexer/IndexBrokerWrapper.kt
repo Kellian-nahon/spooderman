@@ -1,6 +1,7 @@
-package com.epita.indexer.core
+package com.epita.indexer
 
 import com.epita.broker.api.client.BrokerConsumer
+import com.epita.indexer.core.RetroIndex
 import com.epita.reussaure.bean.LogBean
 import com.epita.spooderman.Topics
 import com.epita.spooderman.commands.IndexDocumentCommand

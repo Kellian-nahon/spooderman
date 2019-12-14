@@ -1,10 +1,11 @@
-package com.epita.indexer
+package com.epita.documentizer
 
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerHTTPClient
 import com.epita.broker.api.client.BrokerProducer
-import com.epita.indexer.tokenisation.*
-import com.epita.indexer.vectorisation.Vectorizer
+import com.epita.documentizer.core.Indexer
+import com.epita.documentizer.tokenisation.*
+import com.epita.documentizer.vectorisation.Vectorizer
 import com.epita.reussaure.core.Reussaure
 import com.epita.reussaure.provider.Singleton
 import com.epita.spooderman.Topics

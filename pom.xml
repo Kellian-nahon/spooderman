@@ -28,6 +28,7 @@
     <module>reussaure</module>
     <module>urlvalidator</module>
     <module>orchestrator</module>
+      <module>documentizer</module>
   </modules>
 
   <dependencies>

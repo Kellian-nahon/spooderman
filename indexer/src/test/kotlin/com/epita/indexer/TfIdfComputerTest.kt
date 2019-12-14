@@ -2,8 +2,8 @@ package com.epita.indexer
 
 import com.epita.indexer.core.RetroIndex
 import com.epita.indexer.core.DefaultSimilarityComputer
-import com.epita.indexer.tokenisation.*
-import com.epita.indexer.vectorisation.Vectorizer
+import com.epita.documentizer.tokenisation.*
+import com.epita.documentizer.vectorisation.Vectorizer
 import com.epita.spooderman.types.Document
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue

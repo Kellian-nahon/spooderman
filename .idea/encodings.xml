@@ -11,9 +11,10 @@
     <file url="file://$PROJECT_DIR$/crawler" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crawler/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crawler/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/documentizer" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/documentizer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/indexer" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/indexer/src/main/kotlin" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/indexer/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/orchestrator" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/orchestrator/src/main/kotlin" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/orchestrator/src/main/resources" charset="UTF-8" />

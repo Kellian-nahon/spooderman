@@ -1,4 +1,4 @@
-package com.epita.indexer.tokenisation
+package com.epita.documentizer.tokenisation
 
 class LowercaseReducer: WordTransformer {
     override fun apply(word: String): String? {
