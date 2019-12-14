@@ -75,7 +75,7 @@ fun main(args: Array<String>) {
         }))
     }
     val client = reussaure.instanceOf(BrokerConsumer::class.java)
-    client.setHandler(Topics.TO_INDEX_COMMAND.topicId, IndexDocumentCommand::class.java) {
+    client.setHandler(Topics.IndexDocumentCommand.topicId, IndexDocumentCommand::class.java) {
         reussaure.instanceOf(RetroIndex::class.java).addDocument(it.document)
 
 

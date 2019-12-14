@@ -73,10 +73,10 @@ fun main(args: Array<String>) {
 
     }
     val client = reussaure.instanceOf(BrokerConsumer::class.java)
-    client.setHandler(Topics.TO_DOCUMENTIZE_COMMAND.topicId, DocumentizeContentCommand::class.java) {
+    client.setHandler(Topics.DocumentizeContentCommand.topicId, DocumentizeContentCommand::class.java) {
         val document = reussaure.instanceOf(Indexer::class.java).documentize(it.content)
         reussaure.instanceOf(BrokerProducer::class.java).sendMessage(
-            Topics.DOCUMENTIZED_EVENT.topicId, DocumentizedContentEvent(document), PublicationType.ONCE
+            Topics.DocumentizedContentEvent.topicId, DocumentizedContentEvent(document), PublicationType.ONCE
         ) { _, _ -> }
 
     }
