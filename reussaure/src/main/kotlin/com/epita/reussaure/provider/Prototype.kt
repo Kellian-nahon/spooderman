@@ -11,7 +11,7 @@ class Prototype<BEAN_TYPE : Any, SUPPLIER_BEAN_TYPE : BEAN_TYPE>(provideClass: C
 
     @Mutate
     override fun provide(): BEAN_TYPE {
-        logger().info("Providing prototype of type: ${provideForClass().simpleName}")
+        logger().trace("Providing prototype of type: ${provideForClass().simpleName}")
         return proxify(this, initializer.get())
     }
 

@@ -20,10 +20,10 @@ class Singleton<BEAN_TYPE : Any, SUPPLIER_BEAN_TYPE : BEAN_TYPE>(provideClass: C
                 logger().warn("Initalized singleton of type ${provideForClass().simpleName} to null")
             }
             else {
-                logger().info("Initalized singleton of type ${provideForClass().simpleName}")
+                logger().trace("Initalized singleton of type ${provideForClass().simpleName}")
             }
         }
-        logger().info("Providing singleton of type: ${provideForClass().simpleName}")
+        logger().trace("Providing singleton of type: ${provideForClass().simpleName}")
         return value!!
     }
 
