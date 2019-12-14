@@ -7,8 +7,10 @@ import com.epita.spooderman.Topics
 import com.epita.spooderman.commands.CrawlURLCommand
 import com.epita.spooderman.commands.DocumentizeContentCommand
 import com.epita.spooderman.commands.IndexDocumentCommand
+import com.epita.spooderman.commands.ValidateURLCommand
 import com.epita.spooderman.events.CrawledURLEvent
 import com.epita.spooderman.events.DocumentizedContentEvent
+import com.epita.spooderman.events.FoundURLEvent
 import com.epita.spooderman.events.ValidatedURLEvent
 
 class Orchestrator(private val consumer: BrokerConsumer, private val producer: BrokerProducer) {
@@ -21,7 +23,7 @@ class Orchestrator(private val consumer: BrokerConsumer, private val producer: B
             Topics.CrawlURLCommand.topicId,
             CrawlURLCommand(event.url),
             PublicationType.ONCE
-        ) { response, throwable ->
+        ) { response, error ->
             // TODO: Log
         }
     }
@@ -31,7 +33,7 @@ class Orchestrator(private val consumer: BrokerConsumer, private val producer: B
             Topics.DocumentizeContentCommand.topicId,
             DocumentizeContentCommand(event.content),
             PublicationType.ONCE
-        ) { response, throwable ->
+        ) { response, error ->
             // TODO: Log
         }
     }
@@ -41,8 +43,18 @@ class Orchestrator(private val consumer: BrokerConsumer, private val producer: B
             Topics.IndexDocumentCommand.topicId,
             IndexDocumentCommand(event.document),
             PublicationType.ONCE
-        ) { response, throwable ->
+        ) { response, error ->
             // TODO: Log
+        }
+    }
+
+    private fun onFoundURLEvent(event: FoundURLEvent) {
+        producer.sendMessage(
+            Topics.ValidateURLCommand.topicId,
+            ValidateURLCommand(event.url),
+            PublicationType.ONCE
+        ) { response, error ->
+
         }
     }
 
@@ -62,6 +74,11 @@ class Orchestrator(private val consumer: BrokerConsumer, private val producer: B
             Topics.CrawledURLEvent.topicId,
             CrawledURLEvent::class.java
         ) { onCrawledURLEvent(it) }
+
+        consumer.setHandler(
+            Topics.FoundURLEvent.topicId,
+            FoundURLEvent::class.java
+        ) { onFoundURLEvent(it) }
     }
 
     fun start(serverPort: Int) {

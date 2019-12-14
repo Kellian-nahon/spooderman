@@ -9,5 +9,6 @@ enum class Topics(val topicId: TopicId) {
     ValidateURLCommand("validate-url"),
     CrawledURLEvent("crawled-url"),
     DocumentizedContentEvent("documentized-content"),
-    ValidatedURLEvent("validated-url")
+    ValidatedURLEvent("validated-url"),
+    FoundURLEvent("found-url")
 }
