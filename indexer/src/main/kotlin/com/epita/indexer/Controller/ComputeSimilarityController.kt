@@ -2,14 +2,9 @@ package com.epita.indexer.controller
 
 import com.epita.indexer.Controller.dto.QueryResponse
 import com.epita.indexer.core.Querying
-import com.epita.indexer.core.RetroIndex
-import com.epita.indexer.core.SimilarityComputer
-import com.epita.indexer.tokenisation.Tokenizer
-import com.epita.indexer.vectorisation.Vectorizer
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.javalin.Javalin
 import io.javalin.http.BadRequestResponse
-import java.lang.Exception
 
 
 class ComputeSimilarityController(private val querying: Querying,

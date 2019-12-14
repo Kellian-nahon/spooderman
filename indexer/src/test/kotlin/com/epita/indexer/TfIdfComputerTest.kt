@@ -1,7 +1,7 @@
 package com.epita.indexer
 
 import com.epita.indexer.core.RetroIndex
-import com.epita.indexer.core.SimilarityComputer
+import com.epita.indexer.core.DefaultSimilarityComputer
 import com.epita.indexer.tokenisation.*
 import com.epita.indexer.vectorisation.Vectorizer
 import com.epita.spooderman.types.Document
@@ -67,7 +67,7 @@ class TfIdfComputerTest {
         val documents = listOf(doc1, doc2, doc3)
         val retroIndex = RetroIndex()
         documents.forEach { retroIndex.addDocument(it) }
-        val idfComputer = SimilarityComputer(retroIndex)
+        val idfComputer = DefaultSimilarityComputer(retroIndex)
         val queryVector = vectorizer.vectorize(tokenizer.tokenize("green rabbit"))
         val rankList = idfComputer.getDocsWithSimilarity(queryVector)
         val rankedDocuments = listOf(doc3, doc2, doc1)

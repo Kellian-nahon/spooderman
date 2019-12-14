@@ -3,17 +3,13 @@ package com.epita.indexer.core
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerHTTPClient
 import com.epita.broker.api.client.BrokerProducer
-import com.epita.broker.core.PublicationType
-import com.epita.indexer.Indexer
-import com.epita.reussaure.core.Reussaure
-import com.epita.reussaure.provider.Singleton
 import com.epita.indexer.controller.ComputeSimilarityController
 import com.epita.indexer.tokenisation.*
 import com.epita.indexer.vectorisation.Vectorizer
+import com.epita.reussaure.core.Reussaure
+import com.epita.reussaure.provider.Singleton
 import com.epita.spooderman.Topics
-import com.epita.spooderman.commands.DocumentizeContentCommand
 import com.epita.spooderman.commands.IndexDocumentCommand
-import com.epita.spooderman.events.DocumentizedContentEvent
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.javalin.Javalin
@@ -55,10 +51,10 @@ fun main(args: Array<String>) {
                 StemmingReducer(suffixes), SynonymsReducer(synonyms)
             )) }))
         addProvider(Singleton(RetroIndex::class.java, Supplier { RetroIndex() }))
-        addProvider(Singleton(SimilarityComputer::class.java, Supplier { SimilarityComputer(
+        addProvider(Singleton(SimilarityComputer::class.java, Supplier { DefaultSimilarityComputer(
             instanceOf(RetroIndex::class.java))
         }))
-        addProvider(Singleton(Querying::class.java, Supplier { Querying(
+        addProvider(Singleton(Querying::class.java, Supplier { DefaultQuerying(
             instanceOf(Tokenizer::class.java), instanceOf(Vectorizer::class.java), instanceOf(SimilarityComputer::class.java))
         }))
         addProvider(Singleton(Javalin::class.java, Supplier { Javalin.create() }))
