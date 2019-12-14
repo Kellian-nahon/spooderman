@@ -1,7 +1,7 @@
 package com.epita.broker.broker.event_loggers
 
 import com.epita.broker.broker.Message
-import com.epita.broker.broker.TopicId
+import com.epita.spooderman.types.TopicId
 import java.io.FileOutputStream
 
 class FileEventLogger(val outputStream: FileOutputStream) : EventLogger {

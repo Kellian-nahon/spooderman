@@ -1,10 +1,8 @@
 package com.epita.reussaure.scope
 
 import com.epita.spooderman.annotation.Mutate
-import com.epita.spooderman.annotation.NotNull
 import com.epita.spooderman.annotation.Pure
 import com.epita.reussaure.exception.InvalidScopePopException
-import com.epita.spooderman.validator.Fault
 import java.util.*
 
 
@@ -13,35 +11,31 @@ interface ScopeStack {
         private val MIN_STACK_SIZE = 1
     }
 
-    @NotNull
     @Pure
     fun getScopeStack(): Deque<Scope>
 
     @Pure
-    @NotNull
     fun getHead(): Scope {
         return getScopeStack().peek()
     }
 
     @Mutate
-    fun pushScope(@NotNull scope: Scope) {
+    fun pushScope(scope: Scope) {
         pushScope(scope) {}
     }
 
     @Mutate
-    fun pushScope(@NotNull init: Scope.() -> Unit) {
+    fun pushScope(init: Scope.() -> Unit) {
         pushScope(DefaultScope(), init)
     }
 
     @Mutate
-    fun pushScope(@NotNull scope: Scope, @NotNull init: Scope.() -> Unit) {
-        Fault.NULL.validate(Pair(scope, "scope"), Pair(init, "init"))
+    fun pushScope(scope: Scope, init: Scope.() -> Unit) {
         init(scope)
         getScopeStack().push(scope)
     }
 
     @Mutate
-    @NotNull
     fun popScope(): Scope {
         if (getScopeStack().size <= MIN_STACK_SIZE) {
             throw InvalidScopePopException()

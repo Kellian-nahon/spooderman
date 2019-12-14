@@ -4,21 +4,28 @@ import com.epita.broker.api.dto.PublicationMessage
 import com.epita.broker.broker.event_loggers.EventLogger
 import com.epita.broker.core.PublicationType
 import com.epita.spooderman.types.TopicId
+import com.epita.reussaure.bean.LogBean
+import com.epita.spooderman.annotation.Mutate
+import com.epita.spooderman.annotation.Pure
 import com.epita.spooderman.utils.MutableMultiMap
 import java.net.URL
 
 typealias ClientId = String
 typealias Message = String
 
-interface Broker {
+interface Broker : LogBean {
     val eventLogger: EventLogger
     fun getTopics(): MutableMultiMap<TopicId, BrokerClient>
     fun sendMessageToClient(clientURL: URL, message: PublicationMessage)
 
+    @Mutate
     fun subscribe(clientId: ClientId, topicId: TopicId, webhook: URL) {
+        logger().info("Subscribing client: ${clientId} to topic: ${topicId}")
+
         val topics = getTopics()
         val topic = topics[topicId]
         if (topic == null) {
+            logger().trace("Creating topic: ${topicId}")
             topics[topicId] = mutableListOf(BrokerClient(clientId, webhook))
         }
         else {
@@ -26,30 +33,46 @@ interface Broker {
         }
     }
 
+    @Mutate
     fun disconnect(clientId: ClientId) {
         getTopics().forEach { (_, clients) ->
-            clients.removeIf { client ->
+            if (clients.removeIf { client ->
                 client.id == clientId
+            }) {
+                logger().info("Client: ${clientId} was removed from topics")
+            }
+            else {
+                logger().warn("No client : ${clientId} was subscribed")
             }
         }
     }
 
+    @Pure
     fun publish(topicId: TopicId, message: Message, type: PublicationType) {
-        val subscribedClients = getTopics()[topicId] ?: return
+        logger().info("Sending message on topic: ${topicId} as ${type}")
 
-        if (subscribedClients.isEmpty()) {
-            return
+        val subscribedClients = getTopics()[topicId]
+
+        if (subscribedClients == null) {
+            logger().warn("No clients subscribed on topic: ${topicId}")
         }
 
-        eventLogger.logEvent(topicId, message)
+        subscribedClients?.let {
+            if (subscribedClients.isEmpty()) {
+                return
+            }
 
-        if (type == PublicationType.ONCE) {
-            val client = subscribedClients.random()
-            sendMessageToClient(client.url, PublicationMessage(client.id, topicId, message))
-        } else {
-            subscribedClients.forEach { client ->
+            eventLogger.logEvent(topicId, message)
+
+            if (type == PublicationType.ONCE) {
+                val client = subscribedClients.random()
                 sendMessageToClient(client.url, PublicationMessage(client.id, topicId, message))
+            } else {
+                subscribedClients.forEach { client ->
+                    sendMessageToClient(client.url, PublicationMessage(client.id, topicId, message))
+                }
             }
         }
+
     }
 }

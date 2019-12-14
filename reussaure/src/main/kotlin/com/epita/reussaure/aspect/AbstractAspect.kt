@@ -1,7 +1,6 @@
 package com.epita.reussaure.aspect
 
 import com.epita.spooderman.annotation.Pure
-import com.epita.spooderman.validator.Fault
 import org.jetbrains.annotations.NotNull
 import java.lang.reflect.Method
 
@@ -12,7 +11,6 @@ abstract class AbstractAspect<BEAN_TYPE : Any, ASPECT_TYPE>(
     @Pure
     @NotNull
     protected fun checkMethod(@NotNull invokedMethod: Method): Boolean {
-        Fault.NULL.validate(Pair(invokedMethod, "invokedMethod"), Pair(targetMethod, "targetMethod"))
         return targetMethod.name == invokedMethod.name
     }
 }

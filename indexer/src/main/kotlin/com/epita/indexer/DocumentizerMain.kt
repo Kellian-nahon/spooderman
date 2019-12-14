@@ -3,7 +3,6 @@ package com.epita.indexer
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerHTTPClient
 import com.epita.broker.api.client.BrokerProducer
-import com.epita.broker.api.client.TestMessage
 import com.epita.broker.core.PublicationType
 import com.epita.indexer.tokenisation.*
 import com.epita.indexer.vectorisation.Vectorizer
