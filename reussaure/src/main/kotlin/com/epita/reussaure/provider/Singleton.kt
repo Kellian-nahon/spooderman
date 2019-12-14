@@ -17,10 +17,10 @@ class Singleton<BEAN_TYPE : Any, SUPPLIER_BEAN_TYPE : BEAN_TYPE>(provideClass: C
             value = proxify(this, initializer.get())
             isInitialized = true
             if (value == null) {
-                logger().info("Initalized singleton of type ${provideForClass().simpleName}")
+                logger().warn("Initalized singleton of type ${provideForClass().simpleName} to null")
             }
             else {
-                logger().warn("Initalized singleton of type ${provideForClass().simpleName} to null")
+                logger().info("Initalized singleton of type ${provideForClass().simpleName}")
             }
         }
         logger().info("Providing singleton of type: ${provideForClass().simpleName}")
