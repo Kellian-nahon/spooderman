@@ -4,6 +4,7 @@ import com.epita.reussaure.core.Reussaure
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerHTTPClient
 import com.epita.broker.api.client.BrokerProducer
+import com.epita.broker.utils.JavalinSupplier
 import com.epita.crawler.cleaners.Cleaner
 import com.epita.crawler.cleaners.DomCleaner
 import com.epita.crawler.core.Crawler
@@ -25,6 +26,9 @@ class CLIArgs(parser: ArgParser) {
     val listeningPort by parser.storing("-p", "--port", help = "The listening port for this service") {
         toInt()
     }.default(20200)
+    val listeningHostIp by parser.storing("--host-ip", help ="The listening host for this service") {
+        toString()
+    }.default { "" }
 }
 
 fun main(args: Array<String>) {
@@ -38,7 +42,7 @@ fun main(args: Array<String>) {
 
         val reussaure = Reussaure {
             addProvider(Singleton(BrokerHTTPClient::class.java, Supplier { BrokerHTTPClient(URL(brokerURL)) }))
-            addProvider(Singleton(Javalin::class.java, Supplier { Javalin.create() }))
+            addProvider(Singleton(Javalin::class.java, JavalinSupplier.get(listeningHostIp)))
             addProvider(Singleton(BrokerConsumer::class.java, Supplier {
                 BrokerConsumer(instanceOf(BrokerHTTPClient::class.java), instanceOf(Javalin::class.java))
             }))
