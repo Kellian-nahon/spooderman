@@ -3,6 +3,7 @@ package com.epita.urlvalidator
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerHTTPClient
 import com.epita.broker.api.client.BrokerProducer
+import com.epita.broker.utils.JavalinSupplier
 import com.epita.reussaure.core.Reussaure
 import com.epita.reussaure.provider.Singleton
 import com.epita.spooderman.Topics
@@ -16,6 +17,8 @@ class CLIArgs(parser: ArgParser) {
     val listeningPort by parser.storing("-p", "--port", help = "The listening port for this service") {
         toInt()
     }.default(20300)
+    val listeningHostIp by parser.storing("--host", help ="The listening host for this service")
+        .default("")
 }
 
 fun main(args: Array<String>) = mainBody {
@@ -28,7 +31,7 @@ fun main(args: Array<String>) = mainBody {
     ).parseInto(::CLIArgs).run {
         val reussaure = Reussaure {
             addProvider(Singleton(BrokerHTTPClient::class.java, Supplier { BrokerHTTPClient(URL(brokerURL)) }))
-            addProvider(Singleton(Javalin::class.java, Supplier { Javalin.create() }))
+            addProvider(Singleton(Javalin::class.java, JavalinSupplier.get(listeningHostIp)))
             addProvider(Singleton(BrokerConsumer::class.java, Supplier {
                 BrokerConsumer(instanceOf(BrokerHTTPClient::class.java), instanceOf(Javalin::class.java))
             }))
