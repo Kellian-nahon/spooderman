@@ -2,6 +2,7 @@ package com.epita.indexer
 
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerHTTPClient
+import com.epita.broker.utils.JavalinSupplier
 import com.epita.indexer.controller.ComputeSimilarityController
 import com.epita.documentizer.tokenisation.*
 import com.epita.documentizer.vectorisation.Vectorizer
@@ -28,6 +29,8 @@ class CLIArgs(parser: ArgParser) {
     val serverPort by parser.storing("--server-port", help = "The HTTP API port") {
         toInt()
     }.default(8080)
+    val listeningHostIp by parser.storing("--host-ip", help ="The listening host for this service")
+        .default("")
 }
 
 fun main(args: Array<String>) = mainBody {
@@ -87,7 +90,7 @@ fun main(args: Array<String>) = mainBody {
                     instanceOf(SimilarityComputer::class.java)
                 )
             }))
-            addProvider(Prototype(Javalin::class.java, Supplier { Javalin.create() }))
+            addProvider(Prototype(Javalin::class.java, JavalinSupplier.get(listeningHostIp)))
             addProvider(Singleton(ComputeSimilarityController::class.java, Supplier {
                 ComputeSimilarityController(
                     instanceOf(Querying::class.java), instanceOf(Javalin::class.java)

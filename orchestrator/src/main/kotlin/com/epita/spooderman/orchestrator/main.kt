@@ -22,9 +22,8 @@ class CLIArgs(parser: ArgParser) {
     val listeningPort by parser.storing("-p", "--port", help = "The listening port for this service") {
         toInt()
     }.default(20100)
-    val listeningHostIp by parser.storing("--host-ip", help ="The listening host for this service") {
-        toString()
-    }.default { "" }
+    val listeningHostIp by parser.storing("--host-ip", help ="The listening host for this service")
+        .default { "" }
 }
 
 fun main(args: Array<String>) = mainBody {

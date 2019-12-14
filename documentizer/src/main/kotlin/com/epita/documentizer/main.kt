@@ -3,6 +3,7 @@ package com.epita.documentizer
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerHTTPClient
 import com.epita.broker.api.client.BrokerProducer
+import com.epita.broker.utils.JavalinSupplier
 import com.epita.documentizer.core.Indexer
 import com.epita.documentizer.tokenisation.*
 import com.epita.documentizer.vectorisation.Vectorizer
@@ -24,6 +25,8 @@ class CLIArgs(parser: ArgParser) {
     val listeningPort by parser.storing("-p", "--port", help = "The listening port for this service") {
         toInt()
     }.default(20400)
+    val listeningHostIp by parser.storing("--host-ip", help ="The listening host for this service")
+        .default("")
 }
 
 fun main(args: Array<String>) = mainBody {
@@ -77,7 +80,7 @@ fun main(args: Array<String>) = mainBody {
                 )
             }))
 
-            addProvider(Singleton(Javalin::class.java, Supplier { Javalin.create() }))
+            addProvider(Singleton(Javalin::class.java, JavalinSupplier.get(listeningHostIp)))
             addProvider(Singleton(BrokerHTTPClient::class.java, Supplier { BrokerHTTPClient(URL(brokerURL)) }))
             addProvider(Singleton(BrokerConsumer::class.java, Supplier {
                 BrokerConsumer(instanceOf(BrokerHTTPClient::class.java), instanceOf(Javalin::class.java))
