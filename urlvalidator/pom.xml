@@ -21,6 +21,11 @@
             <artifactId>reussaure</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.epita</groupId>
+            <artifactId>broker</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 
