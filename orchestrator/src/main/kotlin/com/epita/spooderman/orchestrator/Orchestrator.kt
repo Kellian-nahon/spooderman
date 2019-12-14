@@ -31,7 +31,7 @@ class Orchestrator(private val consumer: BrokerConsumer, private val producer: B
     private fun onCrawledURLEvent(event: CrawledURLEvent) {
         producer.sendMessage(
             Topics.DocumentizeContentCommand.topicId,
-            DocumentizeContentCommand(event.content),
+            DocumentizeContentCommand(event.content, event.url),
             PublicationType.ONCE
         ) { response, error ->
             // TODO: Log
