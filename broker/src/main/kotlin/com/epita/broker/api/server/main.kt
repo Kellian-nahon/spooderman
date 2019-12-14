@@ -18,7 +18,7 @@ import java.util.function.Supplier
 class CLIArgs(parser: ArgParser) {
     val listeningPort by parser.storing("-p", "--port", help = "The listening port for this service") {
         toInt()
-    }.default(20001)
+    }.default(20000)
 }
 
 fun main(args: Array<String>) {
