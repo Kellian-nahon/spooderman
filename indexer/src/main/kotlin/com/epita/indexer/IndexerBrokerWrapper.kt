@@ -22,8 +22,10 @@ class IndexerBrokerWrapper(private val indexer: Indexer,
             val document = indexer.documentize(it.content, it.url)
             brokerProducer.sendMessage(
                 Topics.DocumentizedContentEvent.topicId, DocumentizedContentEvent(document), PublicationType.ONCE
-            ) { response, error ->
-               logger().error("An error occured when sending documentizedContentEvent: %s", error)
+            ) { _, error ->
+                error?.let {
+                    logger().error("An error occured when sending documentizedContentEvent: $error")
+                }
            }
         }
     }

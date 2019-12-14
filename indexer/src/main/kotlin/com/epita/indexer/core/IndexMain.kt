@@ -23,10 +23,10 @@ class CLIArgs(parser: ArgParser) {
     val brokerURL by parser.storing("-u", "--url", help = "URL of the Message Broker")
     val listeningPort by parser.storing("-p", "--port", help = "The listening port for this service") {
         toInt()
-    }.default(20400)
+    }.default(20500)
     val serverPort by parser.storing("--server-port", help = "The HTTP API port") {
         toInt()
-    }.default(20000)
+    }.default(8080)
 }
 
 fun main(args: Array<String>) = mainBody {
@@ -105,7 +105,7 @@ fun main(args: Array<String>) = mainBody {
                 )
             }))
         }
-        val client = reussaure.instanceOf(BrokerConsumer::class.java)
+        val client = reussaure.instanceOf(IndexBrokerWrapper::class.java)
         client.start(listeningPort)
         reussaure.instanceOf(ComputeSimilarityController::class.java).start(serverPort)
     }
