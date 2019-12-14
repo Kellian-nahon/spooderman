@@ -1,6 +1,6 @@
 package com.epita.indexer.controller
 
-import com.epita.indexer.Controller.dto.QueryResponse
+import com.epita.indexer.controller.dto.QueryResponse
 import com.epita.indexer.core.Querying
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.javalin.Javalin

@@ -1,6 +1,6 @@
 package com.epita.indexer.core
 
-import com.epita.indexer.Controller.dto.QueryResponse
+import com.epita.indexer.controller.dto.QueryResponse
 import com.epita.indexer.tokenisation.Tokenizer
 import com.epita.indexer.vectorisation.Vectorizer
 

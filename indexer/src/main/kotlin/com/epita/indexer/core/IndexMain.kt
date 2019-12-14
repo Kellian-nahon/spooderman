@@ -20,7 +20,9 @@ import java.util.function.Supplier
 fun main(args: Array<String>) {
     if (args.size != 3 || args[1].toIntOrNull() == null || args[2].toIntOrNull() == null)
         return
-
+    val brokerURL = args[0]
+    val listeningPortEventBus = args[1].toInt()
+    val listeningPortServer = args[2].toInt()
     val mapper = jacksonObjectMapper()
 
     val delimiters: List<String> = mapper.readValue(
@@ -62,21 +64,18 @@ fun main(args: Array<String>) {
             instanceOf(Querying::class.java), instanceOf(Javalin::class.java))
         }))
 
-        addProvider(Singleton(BrokerHTTPClient::class.java, Supplier { BrokerHTTPClient(URL(args[0])) }))
+        addProvider(Singleton(BrokerHTTPClient::class.java, Supplier { BrokerHTTPClient(URL(brokerURL)) }))
         addProvider(Singleton(BrokerConsumer::class.java, Supplier {
             BrokerConsumer(instanceOf(BrokerHTTPClient::class.java), instanceOf(Javalin::class.java))
         }))
-        addProvider(Singleton(BrokerProducer::class.java, Supplier {
-            BrokerProducer(instanceOf(BrokerHTTPClient::class.java))
+
+        addProvider(Singleton(IndexBrokerWrapper::class.java, Supplier { IndexBrokerWrapper(
+            instanceOf(RetroIndex::class.java),
+            instanceOf(BrokerConsumer::class.java))
         }))
     }
     val client = reussaure.instanceOf(BrokerConsumer::class.java)
-    client.setHandler(Topics.IndexDocumentCommand.topicId, IndexDocumentCommand::class.java) {
-        reussaure.instanceOf(RetroIndex::class.java).addDocument(it.document)
-
-
-    }
-    client.start(args[1].toInt())
-    reussaure.instanceOf(ComputeSimilarityController::class.java).start(args[2].toInt())
+    client.start(listeningPortEventBus)
+    reussaure.instanceOf(ComputeSimilarityController::class.java).start(listeningPortServer)
 
 }

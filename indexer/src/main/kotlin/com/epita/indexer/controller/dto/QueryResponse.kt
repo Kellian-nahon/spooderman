@@ -1,3 +1,3 @@
-package com.epita.indexer.Controller.dto
+package com.epita.indexer.controller.dto
 
 class QueryResponse(val documents: List<String>)
