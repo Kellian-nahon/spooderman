@@ -27,6 +27,7 @@
     <module>crawler</module>
     <module>reussaure</module>
     <module>urlvalidator</module>
+    <module>orchestrator</module>
   </modules>
 
   <dependencies>

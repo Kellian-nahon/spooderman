@@ -3,6 +3,7 @@ package com.epita.broker.api.client
 import com.epita.broker.api.dto.PublicationMessage
 import com.epita.broker.api.dto.SubscribeRequest
 import com.epita.broker.broker.ClientId
+import com.epita.spooderman.Topics
 import com.epita.spooderman.types.TopicId
 import com.epita.broker.exception.UriNotAvailableException
 import com.epita.reussaure.bean.LogBean

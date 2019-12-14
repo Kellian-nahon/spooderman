@@ -7,6 +7,8 @@ import com.epita.reussaure.scope.DefaultScope
 import com.epita.reussaure.scope.Scope
 import com.epita.reussaure.scope.ScopeStack
 import java.util.*
+import java.util.function.Supplier
+import kotlin.reflect.jvm.kotlinFunction
 
 
 class Reussaure(init: Reussaure.() -> Unit = {}) : ScopeStack, Scope {
