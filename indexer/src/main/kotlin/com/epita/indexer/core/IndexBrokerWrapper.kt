@@ -14,13 +14,13 @@ class IndexBrokerWrapper(private val retroIndex: RetroIndex,
 
     private fun setUp() {
         brokerConsumer.setHandler(Topics.IndexDocumentCommand.topicId, IndexDocumentCommand::class.java) {
-            logger().info("Handle DocumentizeContentCommand: ${it.document.url.toString()}")
+            logger().trace("Handle DocumentizeContentCommand: ${it.document.url.toString()}")
             retroIndex.addDocument(it.document)
         }
     }
 
     fun start(port: Int) {
-        logger().info("Start on port: %d", port)
+        logger().trace("Start on port: $port")
         brokerConsumer.start(port)
     }
 

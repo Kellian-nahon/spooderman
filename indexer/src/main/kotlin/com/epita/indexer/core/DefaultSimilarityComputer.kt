@@ -1,5 +1,6 @@
 package com.epita.indexer.core
 
+import com.epita.reussaure.bean.LogBean
 import com.epita.spooderman.types.Document
 import kotlin.math.log
 import kotlin.math.sqrt
@@ -9,7 +10,7 @@ typealias TokenVector = Map<String, Pair<Float, List<Int>>>
 typealias VectorTfIdf = Map<String, Double>
 
 
-class DefaultSimilarityComputer(private val retroIndex: RetroIndex): SimilarityComputer {
+class DefaultSimilarityComputer(private val retroIndex: RetroIndex): SimilarityComputer, LogBean {
 
     private fun getIdf(nbDocumentInCorpus: Int, nbDocumentContainingTerm: Int): Double {
         return log(nbDocumentInCorpus.toDouble() / (1 + nbDocumentContainingTerm).toDouble(), 10.0)
