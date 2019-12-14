@@ -50,7 +50,6 @@ class BrokerConsumer(
 
     @Mutate
     fun start(serverPort: Int) {
-        logger().info("Starting server on port: ${serverPort}")
         app.start(serverPort)
         logger().info("Server started on port: ${serverPort}")
         val serverURL = app.server()?.server()?.uri ?: throw UriNotAvailableException()

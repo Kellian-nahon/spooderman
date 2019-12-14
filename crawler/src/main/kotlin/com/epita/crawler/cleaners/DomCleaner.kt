@@ -15,7 +15,7 @@ class DomCleaner(): Cleaner, LogBean {
 
         val cleanedText = "${title} ${body}"
 
-        logger().info("Cleaned document of title: ${title}")
+        logger().trace("Cleaned document of title: ${title}")
 
         return "${htmlDocument.title()} ${htmlDocument.body().text()}"
     }

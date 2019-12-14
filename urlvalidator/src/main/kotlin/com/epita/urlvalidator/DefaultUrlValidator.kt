@@ -3,6 +3,7 @@ package com.epita.urlvalidator
 import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerProducer
 import com.epita.broker.core.PublicationType
+import com.epita.reussaure.bean.LogBean
 import com.epita.spooderman.Topics
 import com.epita.spooderman.annotation.Mutate
 import com.epita.spooderman.commands.ValidateURLCommand
@@ -11,7 +12,7 @@ import com.epita.urlvalidator.core.UrlValidator
 import java.net.URL
 
 class DefaultUrlValidator(private val consumer: BrokerConsumer,
-                          private val producer: BrokerProducer) : UrlValidator {
+                          private val producer: BrokerProducer) : UrlValidator, LogBean {
     override val urlList: MutableSet<URL> = mutableSetOf()
 
     init {
@@ -33,7 +34,9 @@ class DefaultUrlValidator(private val consumer: BrokerConsumer,
                 ValidatedURLEvent(command.url),
                 PublicationType.ONCE
             ) { response, error ->
-                // TODO: LOG ME
+                error?.let {
+                    logger().warn(it.toString())
+                }
             }
         }
     }

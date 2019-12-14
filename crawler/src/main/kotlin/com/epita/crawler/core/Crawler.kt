@@ -14,7 +14,7 @@ interface Crawler : LogBean{
 
     @Mutate
     fun crawl(url: URL) : Pair<String, Set<URL>> {
-        logger().info("Crawling url: ${url}")
+        logger().trace("Crawling url: ${url}")
 
         val fullText = fetcher.fetch(url)
 

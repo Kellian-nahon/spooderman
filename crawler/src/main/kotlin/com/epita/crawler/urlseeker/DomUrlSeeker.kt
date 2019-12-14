@@ -9,7 +9,7 @@ class DomUrlSeeker() : UrlSeeker, LogBean {
 
     @Pure
     override fun seekUrl(url: URL, input: String): Set<URL> {
-        logger().info("Seeking urls on page: ${url}")
+        logger().trace("Seeking urls on page: ${url}")
         val htmlDocument = Jsoup.parse(input, url.toString())
 
         val urlSet = htmlDocument.select("a")
@@ -18,7 +18,7 @@ class DomUrlSeeker() : UrlSeeker, LogBean {
             .map {href -> URL(href)}
             .toSet()
 
-        logger().info("Fetched ${urlSet.count()} urls ")
+        logger().trace("Fetched ${urlSet.count()} urls ")
         return urlSet
     }
 }

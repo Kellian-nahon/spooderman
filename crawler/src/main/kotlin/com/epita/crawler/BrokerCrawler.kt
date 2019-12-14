@@ -4,6 +4,7 @@ import com.epita.broker.api.client.BrokerConsumer
 import com.epita.broker.api.client.BrokerProducer
 import com.epita.broker.core.PublicationType
 import com.epita.crawler.core.Crawler
+import com.epita.reussaure.bean.LogBean
 import com.epita.spooderman.Topics
 import com.epita.spooderman.commands.CrawlURLCommand
 import com.epita.spooderman.events.CrawledURLEvent
@@ -11,7 +12,7 @@ import com.epita.spooderman.events.FoundURLEvent
 
 class BrokerCrawler(private val consumer: BrokerConsumer,
                     private val producer: BrokerProducer,
-                    private val crawler: Crawler) {
+                    private val crawler: Crawler) : LogBean{
     init {
         setup()
     }
@@ -22,15 +23,19 @@ class BrokerCrawler(private val consumer: BrokerConsumer,
             Topics.CrawledURLEvent.topicId,
             CrawledURLEvent(command.url, text),
             PublicationType.ONCE
-        ) { response, throwable ->
-            // TODO: LOG ME HUGO <3
+        ) { response, error ->
+            error?.let {
+                logger().warn(it.toString())
+            }
         }
         urlSet.forEach {
             producer.sendMessage(Topics.FoundURLEvent.topicId,
                 FoundURLEvent(it),
                 PublicationType.ONCE
             ) { response, error ->
-                // TODO: LOG ME KELLIAN <3
+                error?.let {
+                    logger().warn(it.toString())
+                }
             }
         }
     }

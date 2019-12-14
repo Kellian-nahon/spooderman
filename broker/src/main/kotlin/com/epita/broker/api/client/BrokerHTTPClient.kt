@@ -28,19 +28,19 @@ class BrokerHTTPClient(private val brokerURL: URL) : LogBean{
 
     @Pure
     fun publish(publishRequest: PublishRequest, callback: Callback) {
-        logger().info("Sending request 'publish' from client: ${publishRequest.clientId} to topic ${publishRequest.topicId} of type ${publishRequest.publishType}")
+        logger().trace("Sending request 'publish' from client: ${publishRequest.clientId} to topic ${publishRequest.topicId} of type ${publishRequest.publishType}")
         sendRequest("publish", publishRequest, callback)
     }
 
     @Pure
     fun subscribe(subscribeRequest: SubscribeRequest, callback: Callback) {
-        logger().info("Sending request 'subscribe' from client: ${subscribeRequest.clientId} to topic ${subscribeRequest.topicId} to callback url: ${subscribeRequest.callbackURL}")
+        logger().trace("Sending request 'subscribe' from client: ${subscribeRequest.clientId} to topic ${subscribeRequest.topicId} to callback url: ${subscribeRequest.callbackURL}")
         sendRequest("subscribe", subscribeRequest, callback)
     }
 
     @Pure
     fun disconnect(disconnectRequest: DisconnectRequest, callback: Callback) {
-        logger().info("Sending request 'disconnect' from client: ${disconnectRequest.clientId}" )
+        logger().trace("Sending request 'disconnect' from client: ${disconnectRequest.clientId}" )
         sendRequest("disconnect", disconnectRequest, callback)
     }
 }

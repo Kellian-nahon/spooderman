@@ -8,7 +8,7 @@ class DefaultFetcher : Fetcher, LogBean {
 
     @Pure
     override fun fetch(url: URL): String {
-        logger().info("Fetching url: ${url}")
+        logger().trace("Fetching url: ${url}")
         return url.readText()
     }
 }

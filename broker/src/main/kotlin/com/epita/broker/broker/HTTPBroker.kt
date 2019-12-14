@@ -23,7 +23,7 @@ class HTTPBroker(override val eventLogger: EventLogger) : Broker, LogBean {
     override fun sendMessageToClient(clientURL: URL, message: PublicationMessage) {
         val payload = jacksonObjectMapper().writeValueAsString(message)
         khttp.async.post(clientURL.toString(), data = payload) {
-            logger().info("URL: ${url}, Status Code: ${statusCode}")
+            logger().trace("URL: ${url}, Status Code: ${statusCode}")
         }
     }
 }
